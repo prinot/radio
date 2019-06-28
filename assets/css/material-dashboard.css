@@ -13755,7 +13755,7 @@ h2.title {
 }
 
 .text-primary {
-  color: #9c27b0 !important;
+  color: #0b9366 !important;
 }
 
 .text-danger {
@@ -16777,7 +16777,7 @@ label {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  background: linear-gradient(60deg, #47bc47, #0b9466);
 }
 
 .card .card-header-info .card-icon,

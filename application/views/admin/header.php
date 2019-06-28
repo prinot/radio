@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="<?=base_url('assets/img/favicon.png')?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard by Creative Tim
+    Global Musica Online
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -15,13 +15,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="<?=base_url('assets/css/material-dashboard.css?v=2.1.1')?>" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="<?=base_url('assets/demo/demo.css')?>" rel="stylesheet" />
+  
 </head>
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="<?=base_url('assets/img/sidebar-1.jpg')?>">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="<?=base_url('assets/img/sidebar-1.jpg')?>">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -35,59 +34,49 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" href="./dashboard.html">
+            <a class="nav-link" href="">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./user.html">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
+          <li class="nav-item ">          
+            <a class="nav-link" data-toggle="collapse" data-target="#demo" href="">
+              <i class="material-icons">ballot</i>
+              <p>Blog/Posts</p>
             </a>
+            <div id="demo" class="collapse">
+              <a class="nav-link" href="">
+                <i class="material-icons">create</i>
+                <p>Agregar</p>
+              </a>
+              <a class="nav-link" href="">
+                <i class="material-icons">select_all</i>
+                <p>Ver todos</p>
+              </a>
+            </div> 
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./tables.html">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+            <a class="nav-link" href="">
+              <i class="material-icons">queue_music</i>
+              <p>Dedicatorias</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./typography.html">
-              <i class="material-icons">library_books</i>
-              <p>Typography</p>
+          <li class="nav-item ">          
+            <a class="nav-link" data-toggle="collapse" data-target="#demo1" href="">
+              <i class="material-icons">supervised_user_circle</i>
+              <p>Control de usuarios</p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./icons.html">
-              <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./rtl.html">
-              <i class="material-icons">language</i>
-              <p>RTL Support</p>
-            </a>
-          </li>
-          <li class="nav-item active-pro ">
-            <a class="nav-link" href="./upgrade.html">
-              <i class="material-icons">unarchive</i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li>
+            <div id="demo1" class="collapse">
+              <a class="nav-link" href="">
+                <i class="material-icons">person_add</i>
+                <p>Agregar</p>
+              </a>
+              <a class="nav-link" href="">
+                <i class="material-icons">group</i>
+                <p>Ver todos</p>
+              </a>
+            </div> 
+          </li>                    
         </ul>
       </div>
     </div>
