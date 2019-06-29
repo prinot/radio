@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
   <link href="<?=base_url('assets/css/material-dashboard.css?v=2.1.1')?>" rel="stylesheet" />
-  
+  <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
 </head>
 
 <body class="">
@@ -33,29 +33,29 @@
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active  ">
-            <a class="nav-link" href="">
+          <li class="nav-item <?php if(strcmp($last, 'admin') == 0) echo 'active';?>">
+            <a class="nav-link" href="<?=base_url('admin')?>">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">          
+          <li class="nav-item  <?php if(strcmp($last, 'posts') == 0) echo 'active';?>">
             <a class="nav-link" data-toggle="collapse" data-target="#demo" href="">
               <i class="material-icons">ballot</i>
               <p>Blog/Posts</p>
             </a>
             <div id="demo" class="collapse">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="<?=base_url('admin/add_post')?>">
                 <i class="material-icons">create</i>
                 <p>Agregar</p>
               </a>
-              <a class="nav-link" href="">
+              <a class="nav-link" href="<?=base_url('admin/posts')?>">
                 <i class="material-icons">select_all</i>
                 <p>Ver todos</p>
               </a>
             </div> 
           </li>
-          <li class="nav-item ">
+          <li class="nav-item  <?php if(strcmp($last, 'dedicatorias') == 0) echo 'active';?>">
             <a class="nav-link" href="">
               <i class="material-icons">queue_music</i>
               <p>Dedicatorias</p>
