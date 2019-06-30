@@ -13,7 +13,8 @@
   </div>
   
   <!--   Core JS Files   -->
-  <script src="<?=base_url('assets/js/core/jquery.min.js')?>"></script>
+  
+  
   <script src="<?=base_url('assets/js/core/popper.min.js')?>"></script>
   <script src="<?=base_url('assets/js/core/bootstrap-material-design.min.js')?>"></script>
   <script src="<?=base_url('assets/js/plugins/perfect-scrollbar.jquery.min.js')?>"></script>
@@ -54,7 +55,8 @@
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="<?=base_url('assets/js/material-dashboard.js')?>?v=2.1.1" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="<?=base_url('assets/demo/demo.js')?>"></script>
+  <script src="<?=base_url('assets/js/tablas.js')?>"></script>
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -226,13 +228,7 @@
       });
     });
   </script>
-  <script>
-    $(document).ready(function() {
-      // Javascript method's body can be found in <?=base_url('assets/js/demos.js')?>
-      md.initDashboardPageCharts();
 
-    });
-  </script>
 </body>
 
 </html>

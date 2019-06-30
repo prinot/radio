@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="tabla">
                       <thead class=" text-primary">
                         <th>
                           ID
@@ -63,4 +63,3 @@
           </div>         
         </div>
     </div>
-</div>

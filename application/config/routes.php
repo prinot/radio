@@ -60,3 +60,4 @@ $route['blog'] = 'welcome/blog';
 $route['blog-details'] = 'welcome/blog_details';
 $route['about'] = 'welcome/about';
 $route['contact'] = 'welcome/contact';
+$route['admin/dedicatorias/delete/(:num)'] = 'admin/delete_dedicatoria/$1';

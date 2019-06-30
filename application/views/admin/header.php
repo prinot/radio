@@ -16,6 +16,11 @@
   <!-- CSS Files -->
   <link href="<?=base_url('assets/css/material-dashboard.css?v=2.1.1')?>" rel="stylesheet" />
   <script src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+ 
+  <script src="<?=base_url('assets/js/core/jquery.min.js')?>"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 </head>
 
 <body class="">
@@ -27,9 +32,10 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+        <a href="<?=base_url();?>" class="simple-text logo-normal">
+          Bienvenido
         </a>
+        <h4 class="text-center">Usuario</h4>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -56,7 +62,7 @@
             </div> 
           </li>
           <li class="nav-item  <?php if(strcmp($last, 'dedicatorias') == 0) echo 'active';?>">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="<?=base_url('admin/dedicatorias');?>">
               <i class="material-icons">queue_music</i>
               <p>Dedicatorias</p>
             </a>

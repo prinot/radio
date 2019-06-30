@@ -41,4 +41,18 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/posts');
 		$this->load->view('admin/footer');						
 	}
+	public function dedicatorias(){		
+		$this->load->model('dedicatoria');
+		$data['dedicatorias']=$this->dedicatoria->getDedicatorias();
+		$data['last']='dedicatorias';
+		$this->load->view('admin/header',$data);
+		$this->load->view('admin/dedicatorias');
+		$this->load->view('admin/footer');						
+	}
+	public function delete_dedicatoria($id){		
+		
+		$this->db->delete('dedicatorias', array('id' => $id));
+		$this->session->set_flashdata('status', 'Eliminado');
+		redirect('admin/dedicatorias'); 
+	}
 }
