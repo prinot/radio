@@ -18,24 +18,26 @@
       <div class="content">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-header card-header-warning card-header-icon">
-                  <div class="card-icon">
-                    <i class="material-icons">group</i>
+            <?php if(strcmp($this->session->userdata('rol'),'mod')!==0):?>
+              <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                      <i class="material-icons">group</i>
+                    </div>
+                    <p class="card-category">Usuarios registrados</p>
+                    <h3 class="card-title"><?=$user_count?>                    
+                    </h3>
                   </div>
-                  <p class="card-category">Usuarios registrados</p>
-                  <h3 class="card-title"><?=$user_count?>                    
-                  </h3>
-                </div>
-                <div class="card-footer">
-                  <div class="stats">
-                    <!--<i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Get More Space...</a>-->
+                  <div class="card-footer">
+                    <div class="stats">
+                      <!--<i class="material-icons text-danger">warning</i>
+                      <a href="#pablo">Get More Space...</a>-->
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <?php endif;?>
             <div class="col-lg-4 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">

@@ -29,7 +29,7 @@
                 <div class="card-header card-header-primary " >
                   <h4 class="card-title ">Usuarios registrados</h4>
                   <p class="card-category"> </p>
-                </div>
+                </div>                
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table" id="tabla">
@@ -46,7 +46,7 @@
                         <th>
                           Fecha
                         </th>                        
-                        <th>
+                        <th class="text-right">
                           Acciones
                         </th>                        
                       </thead>
@@ -65,9 +65,9 @@
                             <td>
                                 <?=date('d-m-Y H:i:s',strtotime($usuario->fecha));?>
                             </td>
-                            <td>
-                            <a href="<?=base_url('admin/usuarios/edit_user/').$usuario->id;?>" ><i class="material-icons amarillo ">edit</i></a>
-                              <a href="<?=base_url('admin/usuarios/delete/').$usuario->id;?>" ><i class="material-icons rojo">delete</i></a>
+                            <td class="text-right">
+                              <a href="<?=base_url('admin/usuarios/edit_user/').$usuario->id;?>" ><i class="material-icons amarillo ">edit</i></a>
+                              <?=$usuario->id==$this->session->userdata('id') ? '':'<a href="'.base_url('admin/usuarios/delete/').$usuario->id.'"><i class="material-icons rojo">delete</i></a>'?>
                             </td>
                           </tr>                        
                         <?php endforeach;?>

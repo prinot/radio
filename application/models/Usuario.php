@@ -45,5 +45,15 @@
             return true;            
         return false;        
     }
+    function email_exists($key)
+{
+    $this->db->where('email',$key);
+    $query = $this->db->get('users');
+    if ($query->num_rows() > 0)
+        return true;    
+    else
+        return false;
+    
+}
 }
 ?>

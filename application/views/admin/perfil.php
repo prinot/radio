@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Crear un nuevo Usuario</a>
+            <a class="navbar-brand" href="#pablo">Editar Usuario</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -16,80 +16,62 @@
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <?php if($this->session->flashdata('status')!=''):?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong><?=$this->session->flashdata('status');?></strong> 
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          <?php endif;?>
           <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Nuevo Usuario</h4>                  
+                  <h4 class="card-title">Usuario</h4>                  
                 </div>
                 <div class="card-body">
-                  <form method="post" action="<?=base_url('admin/new_user');?>">
+                  <form method="post" action="<?=base_url('admin/edit_profile');?>">
+                    <input type="hidden" name="id" value="<?=$this->session->userdata('id')?>">
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Nombre completo</label>
-                          <input type="text" class="form-control" name="nombre">
+                          <input type="text" class="form-control" name="nombre" value="<?=$usuario->nombre?>">
                         </div>
                       </div> 
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email</label>
-                          <input type="email" class="form-control" name="email">
+                          <input type="email" class="form-control" name="email"  disabled value="<?=$usuario->email?>">
                         </div>
                       </div> 
                     </div>                     
-                    <div class="row">                    
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="bmd-label-floating">Contraseña</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-                        </div>                       
+                    <div class="row">                                            
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Pregunta de seguridad</label>
-                                <input type="text" class="form-control" name="pregunta">
+                                <input type="text" class="form-control" name="pregunta" value="<?=$usuario->pregunta?>">
                             </div>
                         </div>                       
-                    </div>                    
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Respuesta</label>
-                                <input type="text" class="form-control" name="respuesta">
+                                <input type="text" class="form-control" name="respuesta" value="<?=$usuario->respuesta?>">
                             </div>
                         </div>                                             
+                    </div>                    
+                    <div class="row">                        
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="bmd-label-floating">Rol</label>
-                                <select id="rol" name="rol" class="form-control">
-                                    <option value="mod">Moderador (Encargado de registrar posts)</option>
-                                    <option value="admin">Administrador (Encargado de registrar usuarios del sistema.)</option>
-                                </select>
+                                <label class="bmd-label-floating">Clave (dejar en blanco para conservar la actual)</label>
+                                <input type="password" class="form-control" name="password">
                             </div>
                         </div>                                             
-                    </div>
-                    <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Avatar</label>
                                 <input type="hidden" id="avatar" name="avatar">
                                 <select id="demo-htmlselect" name="avatares">
                                     <?php foreach ($avatars as $avatar):?>
-                                        <option value="<?=$avatar?>" data-imagesrc="<?=base_url().$avatar?>" ></option>
+                                        <option value="<?=$avatar?>" <?=$usuario->avatar == $avatar ? ' selected="selected"' : '';?> data-imagesrc="<?=base_url().$avatar?>" ></option>
                                     <?php endforeach;?>                
                                 </select>
                             </div>                            
                         </div>                        
-                    </div>
+                    </div>                    
                     <button type="submit" class="btn btn-primary pull-right">Enviar</button>
                     <div class="clearfix"></div>
                   </form>

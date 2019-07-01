@@ -8,13 +8,19 @@ class Admin extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('usuario');
 		$this->load->model('post');
-		$this->load->model('dedicatoria');				
+		$this->load->model('dedicatoria');	
+
+		//parametros generales para la carga de archivos. en el caso de las portadas de los  post.
+		$this->upload_path = 'uploads/';
+		$this->allowed_types = 'gif|jpg|png';
+		$this->overwrite= FALSE;		
+		$this->max_filename = 25;				
 	}
 	
 	public function index()
 	{	
-		if($this->session->userdata('logged_in')){
-			$data['last']='admin';
+		if($this->session->userdata('logged_in')){ //chequea si se ha iniciado sesion
+			$data['last']='admin'; //variable de control para marcar como activo el menu de navegacion
 			$data['post_count']=$this->post->getPostsCount();
 			$data['user_count']=$this->usuario->getUsersCount();
 			$data['dedicatoria_count']=$this->dedicatoria->getDedicatoriasCount();	
@@ -23,7 +29,7 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/index');
 			$this->load->view('admin/footer');			
 		}
-		else{
+		else{ //sino, redirecciona al login
 			redirect('admin/login');
 		}			
 	}
@@ -34,20 +40,20 @@ class Admin extends CI_Controller {
 	}
 
 	public function logout(){		
-		session_destroy();		
+		session_destroy();		 //destruye la sesion actual
 		redirect('/admin/login', 'refresh');	
 	}
 
 	public function check_login(){
 		$password=$this->input->post('password');
 		$email=$this->input->post('email');
-		$usuario=$this->usuario->login($email);		
+		$usuario=$this->usuario->login($email);		//primero chequea si el usuario existe con el correo indicado
 		if($usuario!==null){
-			if(strcmp($password,$this->encryption->decrypt($usuario->clave))!==0){
+			if(strcmp($password,$this->encryption->decrypt($usuario->clave))!==0){ //si existe, compara las claves
 				$this->session->set_flashdata('status','Password incorrecto');
-				redirect('/admin/login', 'refresh');	
+				redirect('/admin/login', 'refresh');	//si no coinciden, lo envia al login
 			}				
-			else{
+			else{ //si todo coincide, crea una nueva sesion y  redirige al index
 				$newdata = array(
 					'nombre'  => $usuario->nombre,
 					'email'     => $usuario->email,
@@ -60,7 +66,7 @@ class Admin extends CI_Controller {
 			redirect('/admin/', 'refresh');
 			} 				
 		}					
-		else {
+		else { //si no encuentra el correo, redirige al login
 			$this->session->set_flashdata('status','Usuario no registrado');
 			redirect('/admin/login', 'refresh');
 		}			
@@ -79,8 +85,11 @@ class Admin extends CI_Controller {
 		}			
 	}
 	public function add_user(){	
-		if($this->session->userdata('logged_in')){	
+		//ademas de chequear si esta logueado, tambien chequea que tenga el rol de admin
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
 			$data['last']='users';
+
+			//carga todos los archivos de la carpeta avatars.
 			$dirname = "avatars/";
 			$data['avatars']= glob($dirname."*.png");
 			$this->load->view('admin/header',$data);
@@ -121,8 +130,8 @@ class Admin extends CI_Controller {
 		}			
 	}
 	public function edit_user_form($id){
-		if($this->session->userdata('logged_in')){
-			$data['last']='users';
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
+			$data['last']='users';		
 			$dirname = "avatars/";
 			$data['avatars']= glob($dirname."*.png");
 			$data2['usuario']=$this->usuario->getUserById($id);
@@ -142,23 +151,27 @@ class Admin extends CI_Controller {
 			$contenido=$this->input->post('contenido');	
 
 			$data=array('titulo' =>$titulo, 'contenido' =>$contenido);
-			$config['upload_path']          = 'uploads/';
-			$config['allowed_types']        = 'gif|jpg|png';
-			$config['overwrite'] = FALSE;
-			$config['encrypt_name'] = TRUE;
-			$config['max_filename'] = 25;	
+
+			//parametros para la carga de la imagen
+			$config['upload_path']          = $this->upload_path;
+			$config['allowed_types']        = $this->allowed_types;
+			$config['overwrite'] = $this->overwrite;
+			$new_name = time().'_'.$_FILES["portada"]['name'];
+            $config['file_name'] = $new_name;
+			$config['max_filename'] = $this->max_filename;	
 
 			$this->load->library('upload', $config);
+
 			if ( ! $this->upload->do_upload('portada'))
 			{
 			//error al subir el archivo	
 			}
 			else
-			{
+			{	//en caso de exito, se guarda el nombre del archivo para usarlo en la BD.
 				$file =$this->upload->file_name;						
 				$data['portada']=$file;
 			}
-			$this->load->model('post');	
+			
 			if($this->post->updatePost($data,$id)){
 				$this->session->set_flashdata('status','Post modificado exitosamente');
 				redirect('/admin/posts', 'refresh');
@@ -177,23 +190,26 @@ class Admin extends CI_Controller {
 			$redactor=$this->session->userdata('id');
 
 			$data=array('titulo' =>$titulo, 'contenido' =>$contenido, 'redactor' =>$redactor);
-			$config['upload_path']          = 'uploads/';
-			$config['allowed_types']        = 'gif|jpg|png';
-			$config['overwrite'] = FALSE;
-			$config['encrypt_name'] = TRUE;
-			$config['max_filename'] = 25;	
+			
+			//parametros para la carga de la imagen
+			$config['upload_path']          = $this->upload_path;
+			$config['allowed_types']        = $this->allowed_types;
+			$config['overwrite'] = $this->overwrite;
+			$new_name = time().'_'.$_FILES["portada"]['name'];
+            $config['file_name'] = $new_name;
+			$config['max_filename'] = $this->max_filename;	
 
 			$this->load->library('upload', $config);
 			if ( ! $this->upload->do_upload('portada'))
 			{
-				
+				//en caso de error
 			}
 			else
 			{
 				$file =$this->upload->file_name;						
 				$data['portada']=$file;
 			}
-			$this->load->model('post');
+			
 			if($this->post->addPost($data)){
 				$this->session->set_flashdata('status','Post registrado exitosamente');
 				redirect('/admin/posts', 'refresh');
@@ -206,15 +222,21 @@ class Admin extends CI_Controller {
 	}
 
 	public function usuarios(){
-		$data['last']='users';
-		$data2['usuarios']=$this->usuario->getUsers();
-		$this->load->view('admin/header',$data);
-		$this->load->view('admin/usuarios',$data2);
-		$this->load->view('admin/footer');
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
+			$data['last']='users';
+			$data2['usuarios']=$this->usuario->getUsers();
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/usuarios',$data2);
+			$this->load->view('admin/footer');
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
 	}
 	public function new_user()
 	{
-		if($this->session->userdata('logged_in')){
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
 			$nombre=$this->input->post('nombre');
 			$email=$this->input->post('email');		
 			$password=$this->encryption->encrypt($this->input->post('password'));
@@ -223,7 +245,13 @@ class Admin extends CI_Controller {
 			$rol=$this->input->post('rol');
 			$avatar=$this->input->post('avatar');			
 			$data=array('nombre' =>$nombre, 'email' =>$email, 'clave' =>$password,'rol'=>$rol,
-			'pregunta'=>$pregunta,	'respuesta'=>$respuesta,'avatar'=>$avatar);			
+			'pregunta'=>$pregunta,	'respuesta'=>$respuesta,'avatar'=>$avatar);		
+
+			//valida que no este ya el email registrado en la BD
+			if($this->usuario->email_exists($email)){
+				$this->session->set_flashdata('status','Este email ya se encuentra registrado');
+				redirect('/admin/add_user', 'refresh');
+			}				
 			if($this->usuario->addUser($data)){
 				$this->session->set_flashdata('status','Usuario registrado exitosamente');
 				redirect('/admin/usuarios', 'refresh');
@@ -237,7 +265,7 @@ class Admin extends CI_Controller {
 
 	public function edit_user()
 	{
-		if($this->session->userdata('logged_in')){
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
 			$id=$this->input->post('id');
 			$nombre=$this->input->post('nombre');			
 			$password=$this->encryption->encrypt($this->input->post('password'));
@@ -262,7 +290,7 @@ class Admin extends CI_Controller {
 	public function delete_post($id){				
 		if($this->session->userdata('logged_in')){
 			$this->db->delete('blog', array('id' => $id));
-			$this->session->set_flashdata('status', 'Eliminado');
+			$this->session->set_flashdata('status', 'Post eliminado');
 			redirect('admin/posts'); 
 		}
 		else{
@@ -273,7 +301,7 @@ class Admin extends CI_Controller {
 	
 	public function dedicatorias(){		
 		if($this->session->userdata('logged_in')){
-			$this->load->model('dedicatoria');
+			
 			$data['dedicatorias']=$this->dedicatoria->getDedicatorias();
 			$data['last']='dedicatorias';
 			$this->load->view('admin/header',$data);
@@ -288,7 +316,7 @@ class Admin extends CI_Controller {
 	public function delete_dedicatoria($id){				
 		if($this->session->userdata('logged_in')){
 			$this->db->delete('dedicatorias', array('id' => $id));
-			$this->session->set_flashdata('status', 'Eliminado');
+			$this->session->set_flashdata('status', 'Dedicatoria eliminada');
 			redirect('admin/dedicatorias');
 		}
 		else{
@@ -297,10 +325,58 @@ class Admin extends CI_Controller {
 		}			
 	}
 	public function delete_user($id){				
-		if($this->session->userdata('logged_in')){
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
 			$this->db->delete('users', array('id' => $id));
-			$this->session->set_flashdata('status', 'Eliminado');
+			$this->session->set_flashdata('status', 'Usuario eliminado');
 			redirect('admin/usuarios');
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+	public function perfil(){	
+		if($this->session->userdata('logged_in')){	
+			$data['last']='perfil';
+			$id=$this->session->userdata('id');
+			$data2['usuario']=$this->usuario->getUserById($id);
+			$dirname = "avatars/";
+			$data2['avatars']= glob($dirname."*.png");
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/perfil',$data2);
+			$this->load->view('admin/footer');
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+	public function edit_profile()
+	{
+		if($this->session->userdata('logged_in')){	
+			$id=$this->input->post('id');
+			$nombre=$this->input->post('nombre');			
+			$password=$this->input->post('password');
+			
+			
+			$pregunta=$this->input->post('pregunta');
+			$respuesta=$this->input->post('respuesta');
+			$rol=$this->input->post('rol');
+			$avatar=$this->input->post('avatar');			
+			$data=array('nombre' =>$nombre,	'pregunta'=>$pregunta,	'respuesta'=>$respuesta,'avatar'=>$avatar);			
+			if($password){
+				$password=$this->encryption->encrypt($password);
+				$data['clave']=$password;
+			}
+			if($this->usuario->updateUser($data,$id)){
+				$this->session->set_flashdata('status','Perfil actualizado exitosamente');
+				$newdata = array(
+					'nombre'  => $nombre,																				
+					'avatar' =>	$avatar
+			);				
+			$this->session->set_userdata($newdata);			
+				redirect('/admin/index', 'refresh');
+			}
 		}
 		else{
 			$this->session->set_flashdata('status','Inicia sesión para continuar');

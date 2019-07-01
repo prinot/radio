@@ -35,6 +35,10 @@
         <a href="<?=base_url();?>" class="simple-text logo-normal">
           Bienvenido
         </a>
+        <div class="text-center"> 
+          <img src="<?=base_url().$this->session->userdata('avatar')?>" width="50" class="text-center">
+        </div>
+        
         <h4 class="text-center"><?=$this->session->userdata('nombre');?></h4>
       </div>
       <div class="sidebar-wrapper">
@@ -67,22 +71,30 @@
               <p>Dedicatorias</p>
             </a>
           </li>
-          <li class="nav-item  <?php if(strcmp($last, 'users') == 0) echo 'active';?>">
-            <a class="nav-link" data-toggle="collapse" data-target="#demo1" href="">
-              <i class="material-icons">supervised_user_circle</i>
-              <p>Control de usuarios</p>
+          <?php if(strcmp($this->session->userdata('rol'),'mod')!==0):?>
+            <li class="nav-item  <?php if(strcmp($last, 'users') == 0) echo 'active';?>">
+              <a class="nav-link" data-toggle="collapse" data-target="#demo1" href="">
+                <i class="material-icons">supervised_user_circle</i>
+                <p>Control de usuarios</p>
+              </a>
+              <div id="demo1" class="collapse">
+                <a class="nav-link" href="<?=base_url('admin/add_user')?>">
+                  <i class="material-icons">person_add</i>
+                  <p>Agregar</p>
+                </a>
+                <a class="nav-link" href="<?=base_url('admin/usuarios');?>">
+                  <i class="material-icons">group</i>
+                  <p>Ver todos</p>
+                </a>
+              </div> 
+            </li>    
+          <?php endif;?>
+          <li class="nav-item  <?php if(strcmp($last, 'perfil') == 0) echo 'active';?>">
+            <a class="nav-link" href="<?=base_url('admin/perfil');?>">
+              <i class="material-icons">account_box</i>
+              <p>Perfil</p>
             </a>
-            <div id="demo1" class="collapse">
-              <a class="nav-link" href="<?=base_url('admin/add_user')?>">
-                <i class="material-icons">person_add</i>
-                <p>Agregar</p>
-              </a>
-              <a class="nav-link" href="<?=base_url('admin/usuarios');?>">
-                <i class="material-icons">group</i>
-                <p>Ver todos</p>
-              </a>
-            </div> 
-          </li>    
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="<?=base_url('admin/logout');?>">
               <i class="material-icons">power_settings_new</i>
