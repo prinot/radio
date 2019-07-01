@@ -31,16 +31,13 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-7 wow fadeInLeft" data-wow-delay="0.3s">
                         <div class="blog-details-content">
-                            <img src="assets/images/blog-details.jpg" alt="" />
+                            <img src="<?=base_url('uploads/').$post->portada?>" alt="" />
                             <div class="blog-meta">
-                                <p><a href="#"><i class="fa fa-user"></i>Dawn Hanson</a><a href="#"><i class="fa fa-heart"></i>215</a><a href="#"><i class="fa fa-comment"></i>17</a></p>
+                                <p><i class="fa fa-user"></i><?=$this->usuario->getAuthorNameById($post->redactor)?></p>
                             </div>
                             <h2 class="cl-black">The Dangerous Truth About Clinton</h2>
-                            <p>Forfeited you engrossed but gay sometimes explained. Another as studied it to evident. Merry sense given he be arise. Conduct at an replied removal an amongst. Remaining determine few her two cordially admitting old. Sometimes strangers his ourselves her depending you boy. Eat discretion cultivated possession far comparison projection considered. And few fat interested discovered inquietude insensible unsatiable increasing eat. <br><br>Gave read use way make spot how nor. In daughter goodness an likewise oh consider at procured wandered. Songs words wrong by me hills heard timed. Happy eat may doors songs. Be ignorant so of suitable dissuade weddings together. Least whole timed we is. An smallness deficientdiscourse do newspaper be an eagerness continued. Mr my ready guest ye after short at. </p>
-                            <div class="quote">
-                                Boisterous he on understood attachment as entreaties ye devonshire. In mile an form snug were been sell. Hastened admitted joy nor absolute gay its. Extremely ham any his departure for contained curiosity defective. Way now instrument had eat diminution melancholy expression sentiments stimulated. One built fat you out manor books. Mrs interested now his affronting inquietude contrasted cultivated. Lasting showing expense greater on colonel no.
-                            </div>
-                            <p>Old education him departure any arranging one prevailed. Their end whole might began her. Behaved the comfort another fifteen eat. Partiality had his themselves ask pianoforte increasing discovered. So mr delay at  ince place whole above miles. He to observe conduct at detract because. Way ham unwilling not breakfast furniture explained perpetual. Or mr surrounded conviction so astonished literature. Songs to an blush woman be sorry young. <br><br>New had  appen unable uneasy. Drawings can followed improved out sociable not. Earnestly so do instantly pretended. See general few civilly amiable pleased account carried. Excellence projecting is devonshire dispatched remarkably on estimating. Side in so life past. Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from.</p>
+                            
+                            <p><?=$post->contenido;?></p>
                             <div class="blog-tag-share mt-50">
                                 <div class="blog-tag">
                                     <p><i class="fa fa-tags"></i><a href="#">Radio</a>, <a href="#">Studio</a>, <a href="#">Live show</a> , <a href="#">Radio News</a>, <a href="#">Live Studio</a></p>
@@ -53,7 +50,7 @@
                             <div class="blog-comments">
                                 <div class="row mb-30 single-comment">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                                        <img src="assets/images/commenter1.png" alt="" />
+                                        <img src="<?=base_url('assets/images/commenter1.png')?>" alt="" />
                                     </div>
                                     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9">
                                         <h4>Andrew Karl</h4>
@@ -63,7 +60,7 @@
                                 </div>
                                 <div class="row mb-30 single-comment">
                                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                                        <img src="assets/images/commenter2.png" alt="" />
+                                        <img src="<?=base_url('assets/images/commenter2.png')?>" alt="" />
                                     </div>
                                     <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9">
                                         <h4>Kevin Dove</h4>
@@ -114,25 +111,25 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <a href="#" class="single-most-viewed-post mb-30">
-                                                <img src="assets/images/most-viewed-post1.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/most-viewed-post1.jpg')?>" alt="">
                                                 <h4>Remaining determine few her two</h4>
                                             </a>
                                         </div>
                                         <div class="col-6">
                                             <a href="#" class="single-most-viewed-post mb-30">
-                                                <img src="assets/images/most-viewed-post2.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/most-viewed-post2.jpg')?>" alt="">
                                                 <h4>Another as studied it to evident</h4>
                                             </a>
                                         </div>
                                         <div class="col-6">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/most-viewed-post3.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/most-viewed-post3.jpg')?>" alt="">
                                                 <h4>The Dangerous Truth About Clinton</h4>
                                             </a>
                                         </div>
                                         <div class="col-6">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/most-viewed-post4.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/most-viewed-post4.jpg')?>" alt="">
                                                 <h4>Mr my ready guest ye after short at</h4>
                                             </a>
                                         </div>
@@ -145,32 +142,32 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/insta-feed1.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/insta-feed1.jpg')?>" alt="">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/insta-feed2.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/insta-feed2.jpg')?>" alt="">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/insta-feed3.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/insta-feed3.jpg')?>" alt="">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/insta-feed4.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/insta-feed4.jpg')?>" alt="">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/insta-feed5.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/insta-feed5.jpg')?>" alt="">
                                             </a>
                                         </div>
                                         <div class="col-4">
                                             <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/insta-feed6.jpg" alt="">
+                                                <img src="<?=base_url('assets/images/insta-feed6.jpg')?>" alt="">
                                             </a>
                                         </div>
                                     </div>

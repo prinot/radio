@@ -45,7 +45,7 @@
                                     <div class="blog-meta">
                                         <a href="#"><i class="fa fa-user"></i><?=$this->usuario->getAuthorNameById($post->redactor)?></a>                                        
                                     </div>
-                                    <h2><a href="#"><?=$post->titulo?></a></h2>
+                                    <h2><a href="<?=base_url('blog-details/').$post->id?>"><?=$post->titulo?></a></h2>
                                 </div>
                             </div>
                         </div>

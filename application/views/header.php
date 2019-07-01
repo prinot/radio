@@ -11,18 +11,18 @@
         <title>App Radio text</title>
         
         <!-- Bootstrap -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?=base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet">
 		
-        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-        <link href="assets/css/magnific-popup.css" rel="stylesheet">
+        <link href="<?=base_url('assets/css/font-awesome.min.css')?>" rel="stylesheet">
+        <link href="assets/css/magnific-popup.css')?>" rel="stylesheet">
 
 		
-        <link href="assets/css/animate.css" rel="stylesheet">
-        <link href="assets/css/owl.carousel.min.css" rel="stylesheet">
+        <link href="<?=base_url('assets/css/animate.css')?>" rel="stylesheet">
+        <link href="<?=base_url('assets/css/owl.carousel.min.css')?>" rel="stylesheet">
     
         
         <!-- Main css -->
-        <link href="assets/css/main.css" rel="stylesheet">
+        <link href="<?=base_url('assets/css/main.css')?>" rel="stylesheet">
 		
         
     </head>
@@ -31,7 +31,7 @@
 
     	<!-- Preloader -->
 		<div class="preloader">
-			<img src="assets/images/preloader.png" alt="">
+			<img src="<?=base_url('assets/images/preloader.png')?>" alt="">
             <h4>Urario</h4>
 		</div><!--/Preloader -->
 
@@ -40,7 +40,7 @@
             <nav class="navbar sticky-top navbar-expand-lg main-menu">
                 <div class="container">
 
-                    <a class="navbar-brand" href="index.html"><img src="assets/images/partner-3.jpg" class="d-inline-block align-top" alt=""></a>
+                    <a class="navbar-brand" href="index.html"><img src="<?=base_url('assets/images/partner-3.jpg')?>" class="d-inline-block align-top" alt=""></a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="menu-toggle"></span>
