@@ -20,28 +20,33 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">Nuevo Post</h4>                  
+                  <h4 class="card-title">Editar Post</h4>                  
                 </div>
                 <div class="card-body">
-                  <?php echo form_open_multipart('admin/new_post');?>
+                  <?php echo form_open_multipart('admin/edit_post');?>
+                    <input type="hidden" value="<?=$post->id?>" name="id">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
                           <label class="bmd-label-floating">Título</label>
-                          <input type="text" class="form-control" name="titulo">
+                          <input type="text" class="form-control" value="<?=$post->titulo?>" name="titulo">
                         </div>
                       </div> 
                     </div>                     
                     <div class="row">                    
                       <div class="col-md-3">                       
+                      <?php if($post->portada!==null):?>
+                            Portada actual:
+                            <img src="<?=base_url('uploads/').$post->portada?>" width="400">  
+                        <?php endif;?>
                         <div class="input-group">
-                            Portada
+                            Nueva portada (no seleccionar si no se desea cambiar)
                             <span class="input-group-btn">
                                 <span class="btn btn-primary ">                                   
                                     <input type="file" single name="portada">
                                 </span>
                             </span>                            
-                        </div>        
+                        </div>                              
                       </div>                      
                     </div>                    
                     <div class="row">
@@ -49,7 +54,7 @@
                         <div class="form-group">
                           <label>Descripción</label>
                           <div class="form-group">
-                            <textarea name="contenido" id="editor" rows="20">This is some sample content.</textarea>                            
+                            <textarea name="contenido" id="editor" rows="20"><?=$post->contenido?></textarea>                            
                           </div>
                         </div>
                       </div>

@@ -35,7 +35,7 @@
         <a href="<?=base_url();?>" class="simple-text logo-normal">
           Bienvenido
         </a>
-        <h4 class="text-center">Usuario</h4>
+        <h4 class="text-center"><?=$this->session->userdata('nombre');?></h4>
       </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -82,7 +82,13 @@
                 <p>Ver todos</p>
               </a>
             </div> 
-          </li>                    
+          </li>    
+          <li class="nav-item">
+            <a class="nav-link" href="<?=base_url('admin/logout');?>">
+              <i class="material-icons">power_settings_new</i>
+              <p>Cerrar Sesión</p>
+            </a>
+          </li>                
         </ul>
       </div>
     </div>

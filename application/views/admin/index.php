@@ -25,8 +25,7 @@
                     <i class="material-icons">group</i>
                   </div>
                   <p class="card-category">Usuarios registrados</p>
-                  <h3 class="card-title">5
-                    
+                  <h3 class="card-title"><?=$user_count?>                    
                   </h3>
                 </div>
                 <div class="card-footer">
@@ -44,7 +43,7 @@
                     <i class="material-icons">ballot</i>
                   </div>
                   <p class="card-category">Posts creados</p>
-                  <h3 class="card-title">27</h3>
+                  <h3 class="card-title"><?=$post_count?></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -60,7 +59,7 @@
                     <i class="material-icons">queue_music</i>
                   </div>
                   <p class="card-category">Dedicatorias</p>
-                  <h3 class="card-title">75</h3>
+                  <h3 class="card-title"><?=$dedicatoria_count?></h3>
                 </div>
                 <div class="card-footer">
                   <div class="stats">
@@ -79,11 +78,8 @@
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table">
-                      <thead class=" text-primary">
-                        <th>
-                          ID
-                        </th>
+                  <table class="table" id="tabla">
+                      <thead class=" text-primary">                        
                         <th>
                           Título
                         </th>
@@ -93,22 +89,28 @@
                         <th>
                           Fecha
                         </th>                        
+                        <th>
+                          Acciones
+                        </th>                        
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Dakota Rice
-                          </td>
-                          <td>
-                            Niger
-                          </td>
-                          <td>
-                            Oud-Turnhout
-                          </td>                          
-                        </tr>                        
+                        <?php foreach ($posts as $post):?>
+                          <tr>                          
+                            <td>
+                              <?=$post->titulo;?>
+                            </td>
+                            <td>
+                              <?=$this->usuario->getAuthorNameById($post->redactor);?>
+                            </td>
+                            <td>
+                              <?=date('d-m-Y H:i:s',strtotime($post->publicado));?>
+                            </td>
+                            <td>
+                              <a href="<?=base_url('admin/posts/edit_post/').$post->id;?>" ><i class="material-icons amarillo ">edit</i></a>
+                              <a href="<?=base_url('admin/posts/delete/').$post->id;?>" ><i class="material-icons rojo">delete</i></a>
+                            </td>
+                          </tr>                        
+                        <?php endforeach;?>
                       </tbody>
                     </table>
                   </div>

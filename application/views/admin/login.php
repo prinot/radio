@@ -21,26 +21,34 @@
 </head>
 <body>
 <div class="container">
-	<div class="d-flex justify-content-center h-100">
+	<div class="d-flex justify-content-center h-100">	
 		<div class="card">
+		<?php if($this->session->flashdata('status')!=''):?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><?=$this->session->flashdata('status');?></strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif;?>
 			<div class="card-header">
 				<h3>Iniciar Sesión</h3>
 				
 			</div>
 			<div class="card-body">
-				<form>
+				<form method="post" action="<?=base_url('admin/check_login')?>">
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="username">
+						<input type="text" name="email" class="form-control" placeholder="email">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" autocomplete="off" class="form-control" placeholder="password">
+						<input type="password" name="password" autocomplete="off" class="form-control" placeholder="password">
 					</div>					
 					<div class="form-group">
 						<input type="submit" value="Login" class="btn float-right login_btn">

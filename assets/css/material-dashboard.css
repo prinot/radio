@@ -14,7 +14,12 @@
  */
 
 /*     brand Colors              */
-
+.rojo{
+  color:#e9423f;
+}
+.amarillo{
+  color:#fc9107;
+}
 .card {
   font-size: .875rem;
 }
