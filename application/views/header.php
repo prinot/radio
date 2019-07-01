@@ -74,10 +74,10 @@
                                   <a class="dropdown-item" href="contact.html">Contact us</a>
                                 </div>
                             </li> -->
-                            <li class="nav-item"><a class="nav-link" href="about.html">Acerca de</a></li>
-                            <li class="nav-item"><a class="nav-link" href="radio-chat.html">Radio Chat</a></li>
-                            <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contactanos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?=base_url('about')?>">Acerca de</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?=base_url('channel-list')?>">Radio Chat</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?=base_url('blog')?>">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?=base_url('contact')?>">Contactanos</a></li>
                         </ul>
                         <div class="menu-btn justify-content-end"><a href="#sponsor" class="bttn-small btn-emt">Conviértete en un patrocinador</a></div>
                     </div>

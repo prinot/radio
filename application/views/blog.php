@@ -37,136 +37,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-1.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
+                    <?php foreach ($posts as $post):?>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="single-blog">
+                                <img src="<?=base_url('uploads/').$post->portada?>" alt="">
+                                <div class="blog-meta-content">
+                                    <div class="blog-meta">
+                                        <a href="#"><i class="fa fa-user"></i><?=$this->usuario->getAuthorNameById($post->redactor)?></a>                                        
+                                    </div>
+                                    <h2><a href="#"><?=$post->titulo?></a></h2>
                                 </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-2.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-3.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-4.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-5.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-6.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-7.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-2.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-9.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-10.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Dawn Hanson</a>
-                                    <a href="#"><i class="fa fa-heart"></i>214</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15</a>
-                                </div>
-                                <h2><a href="#">The Dangerous Truth About Hillary Clinton</a></h2>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach;?>                                                            
                     <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.8s">
                         <ul class="styled-pagination mt-30 centered">
                             <li class="next"><a href="#"><span class="fa fa-angle-left"></span></a></li>
