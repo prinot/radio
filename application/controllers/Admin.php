@@ -78,6 +78,20 @@ class Admin extends CI_Controller {
 			redirect('admin/login');
 		}			
 	}
+	public function add_user(){	
+		if($this->session->userdata('logged_in')){	
+			$data['last']='users';
+			$dirname = "avatars/";
+			$data['avatars']= glob($dirname."*.png");
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/add_user');
+			$this->load->view('admin/footer');
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
 
 	public function posts(){
 		if($this->session->userdata('logged_in')){		
@@ -99,6 +113,21 @@ class Admin extends CI_Controller {
 			$data2['post']=$this->post->getPostById($id);
 			$this->load->view('admin/header',$data);
 			$this->load->view('admin/edit_post',$data2);
+			$this->load->view('admin/footer');						
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+	public function edit_user_form($id){
+		if($this->session->userdata('logged_in')){
+			$data['last']='users';
+			$dirname = "avatars/";
+			$data['avatars']= glob($dirname."*.png");
+			$data2['usuario']=$this->usuario->getUserById($id);
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/edit_user',$data2);
 			$this->load->view('admin/footer');						
 		}
 		else{
@@ -175,6 +204,61 @@ class Admin extends CI_Controller {
 			redirect('admin/login');
 		}			
 	}
+
+	public function usuarios(){
+		$data['last']='users';
+		$data2['usuarios']=$this->usuario->getUsers();
+		$this->load->view('admin/header',$data);
+		$this->load->view('admin/usuarios',$data2);
+		$this->load->view('admin/footer');
+	}
+	public function new_user()
+	{
+		if($this->session->userdata('logged_in')){
+			$nombre=$this->input->post('nombre');
+			$email=$this->input->post('email');		
+			$password=$this->encryption->encrypt($this->input->post('password'));
+			$pregunta=$this->input->post('pregunta');
+			$respuesta=$this->input->post('respuesta');
+			$rol=$this->input->post('rol');
+			$avatar=$this->input->post('avatar');			
+			$data=array('nombre' =>$nombre, 'email' =>$email, 'clave' =>$password,'rol'=>$rol,
+			'pregunta'=>$pregunta,	'respuesta'=>$respuesta,'avatar'=>$avatar);			
+			if($this->usuario->addUser($data)){
+				$this->session->set_flashdata('status','Usuario registrado exitosamente');
+				redirect('/admin/usuarios', 'refresh');
+			}
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+
+	public function edit_user()
+	{
+		if($this->session->userdata('logged_in')){
+			$id=$this->input->post('id');
+			$nombre=$this->input->post('nombre');			
+			$password=$this->encryption->encrypt($this->input->post('password'));
+			$pregunta=$this->input->post('pregunta');
+			$respuesta=$this->input->post('respuesta');
+			$rol=$this->input->post('rol');
+			$avatar=$this->input->post('avatar');			
+			$data=array('nombre' =>$nombre, 'clave' =>$password,'rol'=>$rol,
+			'pregunta'=>$pregunta,	'respuesta'=>$respuesta,'avatar'=>$avatar);			
+			if($this->usuario->updateUser($data,$id)){
+				$this->session->set_flashdata('status','Usuario actualizado exitosamente');
+				redirect('/admin/usuarios', 'refresh');
+			}
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+
+
 	public function delete_post($id){				
 		if($this->session->userdata('logged_in')){
 			$this->db->delete('blog', array('id' => $id));
@@ -212,4 +296,16 @@ class Admin extends CI_Controller {
 			redirect('admin/login');
 		}			
 	}
+	public function delete_user($id){				
+		if($this->session->userdata('logged_in')){
+			$this->db->delete('users', array('id' => $id));
+			$this->session->set_flashdata('status', 'Eliminado');
+			redirect('admin/usuarios');
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
 }
+

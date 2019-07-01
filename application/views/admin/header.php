@@ -67,17 +67,17 @@
               <p>Dedicatorias</p>
             </a>
           </li>
-          <li class="nav-item ">          
+          <li class="nav-item  <?php if(strcmp($last, 'users') == 0) echo 'active';?>">
             <a class="nav-link" data-toggle="collapse" data-target="#demo1" href="">
               <i class="material-icons">supervised_user_circle</i>
               <p>Control de usuarios</p>
             </a>
             <div id="demo1" class="collapse">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="<?=base_url('admin/add_user')?>">
                 <i class="material-icons">person_add</i>
                 <p>Agregar</p>
               </a>
-              <a class="nav-link" href="">
+              <a class="nav-link" href="<?=base_url('admin/usuarios');?>">
                 <i class="material-icons">group</i>
                 <p>Ver todos</p>
               </a>

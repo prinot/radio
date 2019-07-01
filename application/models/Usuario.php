@@ -8,6 +8,17 @@
         }
         return null;             
     }
+
+    public function getUsers(){
+        $query = $this->db->get('users');
+            return $query->result();
+    }
+    public function addUser($data=array()){
+        if($this->db->insert('users',$data)){
+            return true;
+        }
+        return false;
+    }
     public function getUsersCount(){
         $query = $this->db->get('users');  
         return $query->num_rows();
@@ -19,6 +30,20 @@
             return $row->nombre;        
         }
         return null;             
+    }
+    public function getUserById($id){
+        $query = $this->db->get_where('users', array('id'=>$id));
+        if($query->num_rows()>0){
+            $row=$query->row();
+            return $row;        
+        }
+        return null;             
+    }
+    public function updateUser($data=array(),$id){
+        $this->db->where('id', $id);
+        if($this->db->update('users', $data))
+            return true;            
+        return false;        
     }
 }
 ?>
