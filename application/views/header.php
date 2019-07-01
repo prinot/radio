@@ -48,35 +48,38 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
-                            <li class="nav-item"><a class="nav-link" href="<?=base_url();?>">Inicio</a></li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+<!--                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radio</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                  <a class="dropdown-item" href="<?=base_url('radio-programs');?>">Radio Programs</a>
-                                  <a class="dropdown-item" href="<?=base_url('radio-jockey');?>">Radio Jockey</a>
-                                  <a class="dropdown-item" href="<?=base_url('rj-profile');?>">RJ Profile</a>
-                                  <a class="dropdown-item" href="<?=base_url('channel-list');?>">Channel List</a>
+                                  <a class="dropdown-item" href="radio-programs.html">Radio Programs</a>
+                                  <a class="dropdown-item" href="radio-jockey.html">Radio Jockey</a>
+                                  <a class="dropdown-item" href="rj-profile.html">RJ Profile</a>
+                                  <a class="dropdown-item" href="channel-list.html">Channel List</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
+                                <a class="nav-link dropdown-toggle" href="engineers.html" id="navbarDropdownMenuLink3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
-                                  <a class="dropdown-item" href="<?=base_url('blog');?>">All Blogs</a>
-                                  <a class="dropdown-item" href="<?=base_url('blog-details');?>">Blog Details</a>
+                                  <a class="dropdown-item" href="blog.html">All Blogs</a>
+                                  <a class="dropdown-item" href="blog-details.html">Blog Details</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="engineers.html" id="navbarDropdownMenuLink4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
-                                  <a class="dropdown-item" href="<?=base_url('about');?>">About</a>
-                                  <a class="dropdown-item" href="<?=base_url('blog');?>">Blog</a>
-                                  <a class="dropdown-item" href="<?=base_url('blog-details');?>">Blog Details</a>
-                                  <a class="dropdown-item" href="<?=base_url('contact');?>">Contact us</a>
+                                  <a class="dropdown-item" href="about.html">About</a>
+                                  <a class="dropdown-item" href="blog.html">Blog</a>
+                                  <a class="dropdown-item" href="blog-details.html">Blog Details</a>
+                                  <a class="dropdown-item" href="contact.html">Contact us</a>
                                 </div>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="<?=base_url('contact');?>">Contact us</a></li>
+                            </li> -->
+                            <li class="nav-item"><a class="nav-link" href="about.html">Acerca de</a></li>
+                            <li class="nav-item"><a class="nav-link" href="radio-chat.html">Radio Chat</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blog.php">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contactanos</a></li>
                         </ul>
-                        <div class="menu-btn justify-content-end"><a href="#sponsor" class="bttn-small btn-emt">Become a Sponsor</a></div>
+                        <div class="menu-btn justify-content-end"><a href="#sponsor" class="bttn-small btn-emt">Conviértete en un patrocinador</a></div>
                     </div>
                 </div>
             </nav>
