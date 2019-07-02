@@ -40,7 +40,7 @@
             <nav class="navbar sticky-top navbar-expand-lg main-menu">
                 <div class="container">
 
-                    <a class="navbar-brand" href="index.html"><img src="<?=base_url('assets/images/partner-3.jpg')?>" class="d-inline-block align-top" alt=""></a>
+                    <a class="navbar-brand" href="<?=base_url()?>"><img src="<?=base_url('assets/images/partner-3.jpg')?>" class="d-inline-block align-top" alt=""></a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="menu-toggle"></span>
@@ -48,7 +48,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav m-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?=base_url()?>">Inicio</a></li>
 <!--                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Radio</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

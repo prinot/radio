@@ -7,17 +7,14 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('usuario');
-		$this->load->model('post');
-		
-
-		
-		
+		$this->load->model('post');						
 	}
 
 	public function index()
 	{
+		$data['posts']=$this->post->getPosts();
 		$this->load->view('header');
-		$this->load->view('welcome_message');
+		$this->load->view('welcome_message',$data);
 		$this->load->view('footer');
 	}
 	public function radio_programs()

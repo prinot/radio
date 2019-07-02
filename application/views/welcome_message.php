@@ -994,32 +994,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-1.jpg" alt="">
-                            <div class="blog-meta-content">
-                                <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Autor</a>
-                                    <a href="#"><i class="fa fa-heart"></i>Acá coloca las visitas</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15 aca el numero de comentarios</a>
+                    <?php foreach ($posts as $post):?>
+                    
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="single-blog">
+                                <img src="<?=base_url('uploads/').$post->portada?>" alt="">
+                                <div class="blog-meta-content">
+                                    <div class="blog-meta">
+                                        <a href="#"><i class="fa fa-user"></i><?=$this->usuario->getAuthorNameById($post->redactor);?></a>                                        
+                                    </div>
+                                    <h2><a href="<?=base_url('blog-details/').$post->id;?>"><?=$post->titulo?></a></h2>
                                 </div>
-                                <h2><a href="#">Titulo del post acá</a></h2>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="single-blog">
-                            <img src="assets/images/blog-2.jpg" alt="">
-                            <div class="blog-meta-content">
-                            <div class="blog-meta">
-                                    <a href="#"><i class="fa fa-user"></i>Autor</a>
-                                    <a href="#"><i class="fa fa-heart"></i>Acá coloca las visitas</a>
-                                    <a href="#"><i class="fa fa-comment"></i>15 aca el numero de comentarios</a>
-                                </div>
-                                <h2><a href="#">Titulo del post acá</a></h2>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach;?>                    
                 </div>
             </div>
         </section><!--/Latest News-->
