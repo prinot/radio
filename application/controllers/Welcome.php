@@ -37,8 +37,9 @@ class Welcome extends CI_Controller {
 	}
 	public function radio_chat()
 	{
+		$data['posts']=$this->post->getPosts();
 		$this->load->view('header');
-		$this->load->view('radio-chat');
+		$this->load->view('radio-chat',$data);
 		$this->load->view('footer');
 	}
 	public function blog()

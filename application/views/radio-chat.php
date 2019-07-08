@@ -39,32 +39,16 @@
                     <div class=" offset-md-1 offset-lg-1 col-sm-12 col-lg-4 col-md-4">
                     <div class="single-sidebar-block most-viewed-post">
                                 <h3>Posts más recientes</h3>
-                                <div class="viewed-post">
+                                <div class="viewed-post">                                    
                                     <div class="row">
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post mb-30">
-                                                <img src="assets/images/most-viewed-post1.jpg" alt="">
-                                                <h4>Remaining determine few her two</h4>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post mb-30">
-                                                <img src="assets/images/most-viewed-post2.jpg" alt="">
-                                                <h4>Another as studied it to evident</h4>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/most-viewed-post3.jpg" alt="">
-                                                <h4>The Dangerous Truth About Clinton</h4>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post">
-                                                <img src="assets/images/most-viewed-post4.jpg" alt="">
-                                                <h4>Mr my ready guest ye after short at</h4>
-                                            </a>
-                                        </div>
+                                        <?php foreach ($posts as $post):?>
+                                            <div class="col-6">
+                                                <a href="#" class="single-most-viewed-post mb-30">
+                                                    <img src="<?=base_url('uploads/').$post->portada?>" alt="">
+                                                    <h4><?=$post->titulo?></h4>
+                                                </a>
+                                            </div>
+                                        <?php endforeach;?>                                        
                                     </div>
                                 </div>
                             </div>
