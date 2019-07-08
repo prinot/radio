@@ -35,10 +35,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('rj-profile');
 		$this->load->view('footer');
 	}
-	public function channel_list()
+	public function radio_chat()
 	{
 		$this->load->view('header');
-		$this->load->view('channel-list');
+		$this->load->view('radio-chat');
 		$this->load->view('footer');
 	}
 	public function blog()

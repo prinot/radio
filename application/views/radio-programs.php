@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="<?=base_url()?>">Inicio</a></li>
                             <li>Radio Programs</li>
                         </ul>
                     </div>

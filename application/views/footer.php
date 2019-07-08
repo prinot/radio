@@ -17,11 +17,11 @@
                                 View the content of this inline frame</a> with your browser</p>
                             </iframe>
                             <ul>
-                                <li><a href="#">Inicio</a></li>
-                                <li><a href="#">Acerca de</a></li>
-                                <li><a href="#">Radio Chat</a></li>
-                                <li><a href="#">Blog</a></li>                               
-                                <li><a href="#">Contactanos</a></li>                                
+                                <li><a href="<?=base_url()?>">Inicio</a></li>
+                                <li><a href="<?=base_url('about')?>">Acerca de</a></li>
+                                <li><a href="<?=base_url('radio-chat')?>">Radio Chat</a></li>
+                                <li><a href="<?=base_url('blog')?>">Blog</a></li>                               
+                                <li><a href="<?=base_url('contact')?>">Contactanos</a></li>                                
                             </ul>                            
                         </div>
                     </div>

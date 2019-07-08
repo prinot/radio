@@ -23,7 +23,11 @@
         
         <!-- Main css -->
         <link href="<?=base_url('assets/css/main.css')?>" rel="stylesheet">
-		
+		<style>
+            iframe{
+    overflow:hidden;
+}
+            </style>
         
     </head>
 	
@@ -75,7 +79,7 @@
                                 </div>
                             </li> -->
                             <li class="nav-item"><a class="nav-link" href="<?=base_url('about')?>">Acerca de</a></li>
-                            <li class="nav-item"><a class="nav-link" href="<?=base_url('channel-list')?>">Radio Chat</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?=base_url('radio-chat')?>">Radio Chat</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?=base_url('blog')?>">Blog</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?=base_url('contact')?>">Contactanos</a></li>
                         </ul>

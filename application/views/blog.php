@@ -4,7 +4,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="custom-banner-content">
-                            <h2>Blog All</h2>
+                            <h2>Blog</h2>
                         </div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="<?=base_url()?>">Inicio</a></li>
                             <li>Blog</li>
                         </ul>
                     </div>
