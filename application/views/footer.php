@@ -5,14 +5,24 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                         <div class="footer-menu">
+                            <iframe title='Flash Player' src='//samcloudmedia.spacial.com/webwidgets/player/v4/250x100.html?sid=97928&rid=173585&startstation=true&theme=light&showBuyButton=never&token=93f0d7e38a797ca2f06f6a17d6f560785b5c446b'width='250'
+                                height='100' 
+                                scrolling='no' 
+                                frameborder='0' 
+                                marginheight='0' 
+                                marginwidth='0' 
+                                allowtransparency='true'>
+                                <p>Your browser does not support iframes.
+                                <a href='//samcloudmedia.spacial.com/webwidgets/player/v4/250x100.html?sid=97928&rid=173585&startstation=true&theme=light&showBuyButton=never&token=93f0d7e38a797ca2f06f6a17d6f560785b5c446b'>
+                                View the content of this inline frame</a> with your browser</p>
+                            </iframe>
                             <ul>
                                 <li><a href="#">Inicio</a></li>
                                 <li><a href="#">Acerca de</a></li>
                                 <li><a href="#">Radio Chat</a></li>
-                                <li><a href="#">Blog</a></li>
-                               
-                                <li><a href="#">Contactanos</a></li>
-                            </ul>
+                                <li><a href="#">Blog</a></li>                               
+                                <li><a href="#">Contactanos</a></li>                                
+                            </ul>                            
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12">

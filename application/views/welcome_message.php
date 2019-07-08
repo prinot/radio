@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
-                        <audio id="urario-radio" controls="" autoplay="autoplay"><source src="http://173.82.168.159:8036/index.html" type="audio/mp3">Your browser does not support the audio element.</audio>
+                        
                     </div>
                 </div>
                 <div class="row">
