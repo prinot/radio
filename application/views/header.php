@@ -32,7 +32,7 @@
     	<!-- Preloader -->
 		<div class="preloader">
 			<img src="<?=base_url('assets/images/preloader.png')?>" alt="">
-            <h4>Urario</h4>
+            <h4>GMO</h4>
 		</div><!--/Preloader -->
 
         <!--Header Area-->
