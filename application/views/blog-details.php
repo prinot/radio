@@ -15,11 +15,17 @@
         <section class="breadcrumb-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                         <ul>
                             <li><a href="<?=base_url()?>">Inicio</a></li>
-                            <li>Detalles del Blog</li>
-                        </ul>
+                            <li>Blog</li>                            
+                        </ul>                                                                        
+                    </div>
+                    <div class="col-lg-2 col-md-2  col-sm-2 col-xs-2">
+                        Bienvenido: <?php 
+                        $nombre=$this->session->userdata('nombre');
+                        if(isset($nombre))
+                            echo $this->session->userdata('nombre')?>
                     </div>
                 </div>
             </div>
@@ -47,45 +53,37 @@
                                 </div>-->
                             </div>
                             
-                            <h2>Comments</h2>
+                            <h2>Comentarios</h2>
                             <div class="blog-comments">
-                                <div class="row mb-30 single-comment">
-                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                                        <img src="<?=base_url('assets/images/commenter1.png')?>" alt="" />
-                                    </div>
-                                    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9">
-                                        <h4>Andrew Karl</h4>
-                                        <a href="#" class="comment-reply">Replay</a>
-                                        <p>Or kind rest bred with am shed then. In raptures building an bringing be. Elderly is detract tedious assured private so tovisited. Do travelling companions contrasted it.</p>
-                                    </div>
-                                </div>
-                                <div class="row mb-30 single-comment">
-                                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3">
-                                        <img src="<?=base_url('assets/images/commenter2.png')?>" alt="" />
-                                    </div>
-                                    <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9">
-                                        <h4>Kevin Dove</h4>
-                                        <a href="#" class="comment-reply">Replay</a>
-                                        <p>Or kind rest bred with am shed then. In raptures building an bringing be. Elderly is detract tedious assured private so tovisited. Do travelling companions contrasted it.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-form">
-                                <h2>Leave a reply</h2>
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                            <input type="text" placeholder="Name*" required />
+                                <?php if (isset($comentarios)) foreach ($comentarios as $c):?>
+                                    <div class="row mb-30 single-comment">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-3">
+                                            <img src="<?=base_url('fotos_perfil/').$this->cliente->getClientById($c->id_cliente)->foto?>" alt="" />
                                         </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                            <input type="email" placeholder="Email*" required />
+                                        <div class="col-lg-10 col-md-9 col-sm-9 col-xs-9">
+                                            <h4><?=$this->cliente->getClientById($c->id_cliente)->nombres;?></h4>                                                                                    
+                                            <p><?=$c->texto?></p>
+                                            <br>
+                                            <p class="pull-right"><?=date('d/m/Y H:i:s',strtotime($c->fecha))?></p>
                                         </div>
-                                    </div>
-                                    <input type="text" placeholder="Website*" required />
-                                    <textarea name="message" rows="6" placeholder="Message"></textarea>
-                                    <button type="submit" class="bttn-mid btn-fill">Comment</button>
-                                </form>
+                                    </div>                                    
+                                <?php endforeach;?>
+                                
                             </div>
+                            <?php if($this->session->userdata('logged_in_client')):?>
+                                <div class="comment-form">
+                                    <h2>Dejar un comentario</h2>
+                                    <form action="<?=base_url('add_comment')?>" method="post">
+                                        <input type="hidden" value="<?=$post->id?>" name="id_post">                                                                                
+                                        <input type="hidden" value="<?=$this->session->userdata('id')?>" name="id_cliente">                                                                                
+                                        <textarea name="texto" rows="6" placeholder="Comentario"></textarea>
+                                        <button type="submit" class="bttn-mid btn-fill">Enviar</button>
+                                    </form>
+                                </div>
+                            <?php else:?>
+                            Para dejar un comentario, <a href="<?=base_url('registro')?>">Regístrate</a> o <a href="<?=base_url('login')?>">Inicia Sesión</a>
+                            <?php endif;?>
+                            
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-5 wow fadeInRight" data-wow-delay="0.3s">

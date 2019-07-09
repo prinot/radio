@@ -15,11 +15,17 @@
         <section class="breadcrumb-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                         <ul>
                             <li><a href="<?=base_url()?>">Inicio</a></li>
-                            <li>Contacto</li>
-                        </ul>
+                            <li>Blog</li>                            
+                        </ul>                                                                        
+                    </div>
+                    <div class="col-lg-2 col-md-2  col-sm-2 col-xs-2">
+                        Bienvenido: <?php 
+                        $nombre=$this->session->userdata('nombre');
+                        if(isset($nombre))
+                            echo $this->session->userdata('nombre')?>
                     </div>
                 </div>
             </div>

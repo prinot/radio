@@ -43,6 +43,9 @@
                         <th>
                           Fecha
                         </th>                        
+                        <th>
+                          Enlace
+                        </th>                        
                         <th class="text-right">
                           Acciones
                         </th>                        
@@ -59,6 +62,9 @@
                             <td>
                               <?=date('d-m-Y H:i:s',strtotime($post->publicado));?>
                             </td>
+                            <td>
+                              <a href="<?=base_url('blog-details/').$post->id?>" target="_blank">Ver en blog</a>
+                            </td>                            
                             <td class="text-right">
                               <a href="<?=base_url('admin/posts/edit_post/').$post->id;?>" ><i class="material-icons amarillo ">edit</i></a>
                               <a href="<?=base_url('admin/posts/delete/').$post->id;?>" ><i class="material-icons rojo">delete</i></a>

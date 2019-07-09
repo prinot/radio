@@ -11,6 +11,8 @@ class Admin extends CI_Controller {
 		$this->load->model('dedicatoria');	
 		$this->load->model('tag');	
 		$this->load->model('categoria');	
+		$this->load->model('comentario');	
+		$this->load->model('cliente');	
 
 		//parametros generales para la carga de archivos. en el caso de las portadas de los  post.
 		$this->upload_path = 'uploads/';
@@ -320,6 +322,17 @@ class Admin extends CI_Controller {
 			redirect('admin/login');
 		}			
 	}
+	public function delete_comment($id){				
+		if($this->session->userdata('logged_in')){
+			$this->db->delete('comentarios', array('id' => $id));
+			$this->session->set_flashdata('status', 'Comentario eliminado');
+			redirect('admin/comentarios'); 
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
 	
 	public function dedicatorias(){		
 		if($this->session->userdata('logged_in')){
@@ -328,6 +341,20 @@ class Admin extends CI_Controller {
 			$data['last']='dedicatorias';
 			$this->load->view('admin/header',$data);
 			$this->load->view('admin/dedicatorias');
+			$this->load->view('admin/footer');						
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+	public function comentarios(){		
+		if($this->session->userdata('logged_in')){
+			
+			$data['comentarios']=$this->comentario->getComments();
+			$data['last']='comentarios';
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/comentarios');
 			$this->load->view('admin/footer');						
 		}
 		else{

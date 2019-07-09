@@ -4,18 +4,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                        <div class="footer-menu">
-                            <iframe title='Flash Player' src='//samcloudmedia.spacial.com/webwidgets/player/v4/250x100.html?sid=97928&rid=173585&startstation=true&theme=light&showBuyButton=never&token=93f0d7e38a797ca2f06f6a17d6f560785b5c446b'width='250'
-                                height='100' 
-                                scrolling='no' 
-                                frameborder='0' 
-                                marginheight='0' 
-                                marginwidth='0' 
-                                allowtransparency='true'>
-                                <p>Your browser does not support iframes.
-                                <a href='//samcloudmedia.spacial.com/webwidgets/player/v4/250x100.html?sid=97928&rid=173585&startstation=true&theme=light&showBuyButton=never&token=93f0d7e38a797ca2f06f6a17d6f560785b5c446b'>
-                                View the content of this inline frame</a> with your browser</p>
-                            </iframe>
+                        <div class="footer-menu">                                                                        
+                        <div class=' col-md-6 spacial-widget-now-97928-93f0d7e38a797ca2f06f6a17d6f560785b5c446b'></div>
+                        <audio autoplay>
+                            <source src="https://samcloud.spacial.com/api/listen?sid=97928&m=sc&rid=173585">                        
+                                Your browser does not support the audio tag.
+                        </audio> 
                             <ul>
                                 <li><a href="<?=base_url()?>">Inicio</a></li>
                                 <li><a href="<?=base_url('about')?>">Acerca de</a></li>
@@ -54,6 +48,16 @@
 
         <script src="<?=base_url('assets/js/wow.min.js')?>"></script>
         <script src="<?=base_url('assets/js/script.js')?>"></script>
+        <script src="<?=base_url('assets/js/toast.js')?>"></script>
+        <script type="text/javascript">
+        <?php if($this->session->flashdata('status_cliente')!=''){
+            echo 'new Toast({message: "'.$this->session->flashdata('status_cliente').'",
+                type: "danger"});';
+        }
+        ?>
+        </script>
+        <script type='text/javascript' src='//samcloudmedia.spacial.com/webwidgets/widget/v5/spacialwidget.js?lib=5&his=5&queue=5&hours=8&art=true&themeType=defined&theme=light&showBuyButton=never'></script>
+        
         
         
     </body>

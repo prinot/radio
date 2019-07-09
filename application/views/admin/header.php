@@ -101,10 +101,10 @@
               </div> 
             </li>
           <?php endif;?>
-          <li class="nav-item  <?php if(strcmp($last, 'dedicatorias') == 0) echo 'active';?>">
-            <a class="nav-link" href="<?=base_url('admin/dedicatorias');?>">
-              <i class="material-icons">queue_music</i>
-              <p>Dedicatorias</p>
+          <li class="nav-item  <?php if(strcmp($last, 'comentarios') == 0) echo 'active';?>">
+            <a class="nav-link" href="<?=base_url('admin/comentarios');?>">
+              <i class="material-icons">comment</i>
+              <p>Comentarios</p>
             </a>
           </li>
           <?php if(strcmp($this->session->userdata('rol'),'mod')!==0):?>

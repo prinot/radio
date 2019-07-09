@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12">
                         <div class="hero-content">
-                            <h2>Bienvenidos a<br>Global Music Online</h2>
+                            <h2 style="font-size:6vw;">Bienvenidos a<br> Global Music Online</h2>
                             <p> Desde que entras en GMO se siente un espiritu alegre y familiar. Disfruta la mejor musica junto a tu familia online.
                             </p>
                             <a href="<?=base_url('radio-programs')?>" class="bttn-mid btn-fill">Radio GMO</a>
@@ -994,20 +994,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <?php foreach ($posts as $post):?>
-                    
+                    <?php for($i=0;$i<4;$i++):?>                    
                         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
                             <div class="single-blog">
-                                <img src="<?=base_url('uploads/').$post->portada?>" alt="">
+                                <img src="<?=base_url('uploads/').$posts[$i]->portada?>" alt="">
                                 <div class="blog-meta-content">
                                     <div class="blog-meta">
-                                        <a href="#"><i class="fa fa-user"></i><?=$this->usuario->getAuthorNameById($post->redactor);?></a>                                        
+                                        <a href="#"><i class="fa fa-user"></i><?=$this->usuario->getAuthorNameById($posts[$i]->redactor);?></a>                                        
                                     </div>
-                                    <h2><a href="<?=base_url('blog-details/').$post->id;?>"><?=$post->titulo?></a></h2>
+                                    <h2><a href="<?=base_url('blog-details/').$posts[$i]->id;?>"><?=$posts[$i]->titulo?></a></h2>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach;?>                    
+                    <?php endfor;?>                    
                 </div>
             </div>
         </section><!--/Latest News-->

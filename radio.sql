@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-07-2019 a las 17:31:11
+-- Tiempo de generación: 09-07-2019 a las 23:39:37
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
 
@@ -78,21 +78,49 @@ INSERT INTO `categorias` (`id`, `nombre`, `slug`) VALUES
 
 CREATE TABLE `clientes` (
   `id` int(255) NOT NULL,
-  `nombre` text,
+  `nombres` varchar(20) DEFAULT NULL,
+  `apellidos` varchar(20) NOT NULL,
   `email` text,
   `clave` text,
   `pregunta` text,
   `respuesta` text,
-  `fecha` datetime DEFAULT NULL
+  `foto` varchar(30) DEFAULT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `nombre`, `email`, `clave`, `pregunta`, `respuesta`, `fecha`) VALUES
-(1, 'Franklin Rojas', 'franklin.rojas@leadsmarketing.mx', 'NmE0OGFiYjgzYjJlMTM0MWMxNjAzZjVmOTUxZjkxOWE=', 'Â¿GÃ©nero de mÃºsica favorita?', 'MTQ0Zjg2ZGI4MjY3MWY5ZDlhZmMyOGVhZmU1ZmI1NTc=', '2019-06-12 18:27:04'),
-(2, 'Admin General', 'admin@leadsmarketing.mx', 'OGFiZGIwNWU1ZTE1MzJiNWUyZjVhOTFlMWNiZTcxOWE=', 'Â¿GÃ©nero de mÃºsica favorita?', 'MTQ0Zjg2ZGI4MjY3MWY5ZDlhZmMyOGVhZmU1ZmI1NTc=', NULL);
+INSERT INTO `clientes` (`id`, `nombres`, `apellidos`, `email`, `clave`, `pregunta`, `respuesta`, `foto`, `fecha`) VALUES
+(1, 'Franklin Rojas', '', 'franklin.rojas@leadsmarketing.mx', 'NmE0OGFiYjgzYjJlMTM0MWMxNjAzZjVmOTUxZjkxOWE=', 'Â¿GÃ©nero de mÃºsica favorita?', 'MTQ0Zjg2ZGI4MjY3MWY5ZDlhZmMyOGVhZmU1ZmI1NTc=', '', '2019-06-12 22:27:04'),
+(2, 'Admin General', '', 'admin@leadsmarketing.mx', 'OGFiZGIwNWU1ZTE1MzJiNWUyZjVhOTFlMWNiZTcxOWE=', 'Â¿GÃ©nero de mÃºsica favorita?', 'MTQ0Zjg2ZGI4MjY3MWY5ZDlhZmMyOGVhZmU1ZmI1NTc=', '', NULL),
+(3, 'Jose', 'Arenas', 'arenas782@gmail.com', '79f1b45787833e3ac9fcfd392294823c3c30ee28eff75c86f876f4750b2afdfdf00e9c67f2518cfebbfcdd4eca8576a9a849824606550c9055c69c9898cd8c503qXfPJJO6Glx0xWvhsZ6g6u3b/nKbms7iBdiBXWpD7k=', 'pregunta', 'respuesta', '1562701686_7ce95cef-5.jpg', '2019-07-09 19:48:06');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `texto` varchar(255) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `id_cliente`, `id_post`, `texto`, `fecha`) VALUES
+(1, 1, 10, 'comentario de prueba\r\n', '2019-07-09 18:45:42'),
+(2, 2, 10, 'Segundo comentario', '2019-07-09 18:59:47'),
+(3, 3, 10, 'Texto de pruebas\r\n', '2019-07-09 19:48:49'),
+(4, 3, 7, 'Comentario nuevo', '2019-07-09 20:53:00'),
+(6, 3, 7, 'nuevo  comentario', '2019-07-09 21:02:42');
 
 -- --------------------------------------------------------
 
@@ -205,6 +233,14 @@ ALTER TABLE `clientes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_post` (`id_post`),
+  ADD KEY `id_cliente` (`id_cliente`);
+
+--
 -- Indices de la tabla `dedicatorias`
 --
 ALTER TABLE `dedicatorias`
@@ -250,7 +286,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `dedicatorias`
@@ -285,6 +327,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `blog`
   ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `post_tags`

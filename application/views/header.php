@@ -23,8 +23,10 @@
         
         <!-- Main css -->
         <link href="<?=base_url('assets/css/main.css')?>" rel="stylesheet">
+        <link href="<?=base_url('assets/css/toast.css')?>" rel="stylesheet">
 
 		
+        
         
         
     </head>
@@ -42,7 +44,7 @@
             <nav class="navbar sticky-top navbar-expand-lg main-menu">
                 <div class="container">
 
-                    <a class="navbar-brand" href="<?=base_url()?>"><img src="<?=base_url('assets/images/GMO.jpg')?>" class="d-inline-block align-top img-responsive" alt=""></a>
+                    <a class="navbar-brand" href="<?=base_url()?>"><img src="<?=base_url('assets/images/GMO.png')?>" class="d-inline-block align-top img-responsive" alt=""></a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="menu-toggle"></span>
@@ -80,8 +82,17 @@
                             <li class="nav-item"><a class="nav-link" href="<?=base_url('radio-chat')?>">Radio Chat</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?=base_url('blog')?>">Blog</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?=base_url('contact')?>">Contactanos</a></li>
+                            <?php 
+                                $nombre=$this->session->userdata('nombre');
+                                if(isset($nombre)):
+                            ?>
+                            <li class="nav-item"><a class="nav-link" href="<?=base_url('logout')?>">Salir</a></li>
+                            <?php endif;?>
                         </ul>
-                        <div class="menu-btn justify-content-end"><a href="#sponsor" class="bttn-small btn-emt">Conviértete en un patrocinador</a></div>
+                        <?php if(isset($sponsor))  :?>
+                            <div class="menu-btn justify-content-end"><a href="#sponsor" class="bttn-small btn-emt">Conviértete en un patrocinador</a></div>
+                        <?php endif;?>
+
                     </div>
                 </div>
             </nav>
