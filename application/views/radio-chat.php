@@ -43,7 +43,7 @@
                                     <div class="row">
                                         <?php foreach ($posts as $post):?>
                                             <div class="col-6">
-                                                <a href="#" class="single-most-viewed-post mb-30">
+                                                <a href="<?=base_url('blog-details/').$post->id?>" class="single-most-viewed-post mb-30">
                                                     <img src="<?=base_url('uploads/').$post->portada?>" alt="">
                                                     <h4><?=$post->titulo?></h4>
                                                 </a>

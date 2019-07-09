@@ -43,7 +43,19 @@
                             </span>                            
                         </div>        
                       </div>                      
-                    </div>                    
+                    </div><br>   
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div clas="form-group">
+                        <label>Tags</label>
+                          <select class="js-example-basic-multiple form-control" name="tags[]" multiple="multiple">
+                            <?php foreach ($tags as $tag):?>
+                              <option value="<?=$tag->id?>"><?=$tag->tag?></option>
+                            <?php endforeach;?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>                 
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -63,8 +75,15 @@
           </div>
         </div>
       </div>
-
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
       <script>
+      $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+          placeholder: "Selecciona las etiquetas para el post",
+    allowClear: true}
+        );
+      });
             ClassicEditor
                 .create( document.querySelector( '#editor' ) )
                 .then( editor => {

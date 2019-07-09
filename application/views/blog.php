@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     <?php endforeach;?>                                                            
-                    <div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.8s">
+                    <!--<div class="col-lg-12 col-md-12 wow fadeInUp" data-wow-delay="0.8s">
                         <ul class="styled-pagination mt-30 centered">
                             <li class="next"><a href="#"><span class="fa fa-angle-left"></span></a></li>
                             <li><a href="#">1</a></li>
@@ -58,7 +58,7 @@
                             <li><a href="#">3</a></li>
                             <li class="next"><a href="#"><span class="fa fa-angle-right"></span></a></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </section><!--/Latest News-->

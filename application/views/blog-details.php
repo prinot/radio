@@ -40,12 +40,13 @@
                             <p><?=$post->contenido;?></p>
                             <div class="blog-tag-share mt-50">
                                 <div class="blog-tag">
-                                    <p><i class="fa fa-tags"></i><a href="#">Radio</a>, <a href="#">Studio</a>, <a href="#">Live show</a> , <a href="#">Radio News</a>, <a href="#">Live Studio</a></p>
+                                    <?php if(isset($tags)):?><p><i class="fa fa-tags"></i> <?php foreach ($tags as $tag):?><a href="<?=base_url('blog/tags/').$tag->id?>"><?=$tag->tag?></a>,<?php endforeach;?> </p><?php endif;?>
                                 </div>
-                                <div class="blog-share">
+                                <!--<div class="blog-share">
                                     <i class="fa fa-share"></i><a href="#"><i class="fa fa-facebook-f"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a><a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
+                                </div>-->
                             </div>
+                            
                             <h2>Comments</h2>
                             <div class="blog-comments">
                                 <div class="row mb-30 single-comment">
@@ -89,49 +90,34 @@
                     </div>
                     <div class="col-lg-4 col-md-5 wow fadeInRight" data-wow-delay="0.3s">
                         <div class="page-sidebar">
-                            <div class="single-sidebar-block sidebar-search">
+                        <!--    <div class="single-sidebar-block sidebar-search">
                                 <form action="#">
                                     <input type="email" placeholder="Search" required >
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>
-                            </div>
+                            </div>-->
                             <div class="single-sidebar-block category-list">
-                                <h3>Category</h3>
+                                <h3>Categorías</h3>
                                 <ul class="cat-anchors">
-                                    <li><a href="#">Music <span>(54)</span></a></li>
-                                    <li><a href="#">Radio Show <span>(52)</span></a></li>
-                                    <li><a href="#">Love Guru <span>(68)</span></a></li>
-                                    <li><a href="#">News <span>(48)</span></a></li>
-                                    <li><a href="#">Night Club <span>(25)</span></a></li>
+                                    <?php foreach($post_per_category as $pc):?>                                    
+                                        <?php if($pc->total>0): ?>
+                                            <li><a href="<?=base_url('blog/category/').$pc->id?>"><?=$pc->nombre?> <span>(<?=$pc->total?>)</span></a></li>
+                                        <?php endif;?>
+                                    <?php endforeach;?>
                                 </ul>
                             </div>
                             <div class="single-sidebar-block most-viewed-post">
-                                <h3>Most Recent Posts</h3>
-                                <div class="viewed-post">
+                                <h3>Posts más recientes</h3>
+                                <div class="viewed-post">                                    
                                     <div class="row">
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post mb-30">
-                                                <img src="<?=base_url('assets/images/most-viewed-post1.jpg')?>" alt="">
-                                                <h4>Remaining determine few her two</h4>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post mb-30">
-                                                <img src="<?=base_url('assets/images/most-viewed-post2.jpg')?>" alt="">
-                                                <h4>Another as studied it to evident</h4>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post">
-                                                <img src="<?=base_url('assets/images/most-viewed-post3.jpg')?>" alt="">
-                                                <h4>The Dangerous Truth About Clinton</h4>
-                                            </a>
-                                        </div>
-                                        <div class="col-6">
-                                            <a href="#" class="single-most-viewed-post">
-                                                <img src="<?=base_url('assets/images/most-viewed-post4.jpg')?>" alt="">
-                                                <h4>Mr my ready guest ye after short at</h4>
-                                            </a>
+                                        <?php foreach ($posts as $post):?>
+                                            <div class="col-6">
+                                                <a href="<?=base_url('blog-details/').$post->id?>" class="single-most-viewed-post mb-30">
+                                                    <img src="<?=base_url('uploads/').$post->portada?>" alt="">
+                                                    <h4><?=$post->titulo?></h4>
+                                                </a>
+                                            </div>
+                                        <?php endforeach;?>                                        
                                         </div>
                                     </div>
                                 </div>
@@ -174,13 +160,11 @@
                                 </div>
                             </div>
                             <div class="single-sidebar-block popular-tags">
-                                <h3>Popular Tags</h3>
+                                <h3>Etiquetas más populares</h3>
                                 <div class="sidebar-tags">
-                                    <a href="#">Radio</a>
-                                    <a href="#">Studio</a>
-                                    <a href="#">Radio Show</a>
-                                    <a href="#">Live Radio</a>
-                                    <a href="#">Night Clue</a>
+                                    <?php foreach($popular_tags as $pt):?>
+                                        <a href="<?=base_url('blog/tags/').$pt->id?>"><?=$pt->tag?></a>
+                                    <?php endforeach;?>
                                 </div>
                             </div>
                         </div>

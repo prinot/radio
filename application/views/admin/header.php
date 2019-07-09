@@ -65,6 +65,42 @@
               </a>
             </div> 
           </li>
+          <?php if(strcmp($this->session->userdata('rol'),'mod')!==0):?>
+            <li class="nav-item  <?php if(strcmp($last, 'categorias') == 0) echo 'active';?>">
+              <a class="nav-link" data-toggle="collapse" data-target="#demo3" href="">
+                <i class="material-icons">category</i>
+                <p>Categorías</p>
+              </a>
+              <div id="demo3" class="collapse">
+                <a class="nav-link" href="<?=base_url('admin/add_categoria')?>">
+                  <i class="material-icons">create</i>
+                  <p>Agregar</p>
+                </a>
+                <a class="nav-link" href="<?=base_url('admin/categorias')?>">
+                  <i class="material-icons">select_all</i>
+                  <p>Ver todos</p>
+                </a>
+              </div> 
+            </li>
+          <?php endif;?>
+          <?php if(strcmp($this->session->userdata('rol'),'mod')!==0):?>
+            <li class="nav-item  <?php if(strcmp($last, 'tags') == 0) echo 'active';?>">
+              <a class="nav-link" data-toggle="collapse" data-target="#demo4" href="">
+                <i class="material-icons">label</i>
+                <p>Etiquetas</p>
+              </a>
+              <div id="demo4" class="collapse">
+                <a class="nav-link" href="<?=base_url('admin/add_tag')?>">
+                  <i class="material-icons">create</i>
+                  <p>Agregar</p>
+                </a>
+                <a class="nav-link" href="<?=base_url('admin/tags')?>">
+                  <i class="material-icons">select_all</i>
+                  <p>Ver todos</p>
+                </a>
+              </div> 
+            </li>
+          <?php endif;?>
           <li class="nav-item  <?php if(strcmp($last, 'dedicatorias') == 0) echo 'active';?>">
             <a class="nav-link" href="<?=base_url('admin/dedicatorias');?>">
               <i class="material-icons">queue_music</i>

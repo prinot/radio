@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-07-2019 a las 01:20:13
+-- Tiempo de generación: 09-07-2019 a las 17:31:11
 -- Versión del servidor: 10.1.32-MariaDB
 -- Versión de PHP: 5.6.36
 
@@ -34,6 +34,7 @@ CREATE TABLE `blog` (
   `titulo` text,
   `portada` text,
   `contenido` longtext,
+  `id_categoria` int(11) NOT NULL,
   `publicado` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,8 +42,33 @@ CREATE TABLE `blog` (
 -- Volcado de datos para la tabla `blog`
 --
 
-INSERT INTO `blog` (`id`, `redactor`, `titulo`, `portada`, `contenido`, `publicado`) VALUES
-(7, '2', 'q', '1562022426_DIAGRAMA_3.png', '<p>This is some sample content.</p>', '2019-07-01 23:07:06');
+INSERT INTO `blog` (`id`, `redactor`, `titulo`, `portada`, `contenido`, `id_categoria`, `publicado`) VALUES
+(7, '2', 'q', '1562022426_DIAGRAMA_3.png', '<p>This is some sample content.</p>', 1, '2019-07-09 13:53:06'),
+(8, '2', 'Postnuevo', NULL, '<p>This is some sample content.</p>', 3, '2019-07-09 13:53:09'),
+(9, '2', 'Postnuevo', NULL, '<p>This is some sample content.</p>', 0, '2019-07-08 22:16:20'),
+(10, '2', 'Nuevo', NULL, '<p>This is some sample content.</p>', 0, '2019-07-08 22:17:47');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(15) NOT NULL,
+  `slug` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`, `slug`) VALUES
+(1, 'Música', ''),
+(2, 'Variedades', ''),
+(3, 'Tendencias', ''),
+(4, 'Otros', '');
 
 -- --------------------------------------------------------
 
@@ -86,6 +112,48 @@ CREATE TABLE `dedicatorias` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `post_tags`
+--
+
+CREATE TABLE `post_tags` (
+  `id` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `id_tag` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `post_tags`
+--
+
+INSERT INTO `post_tags` (`id`, `id_post`, `id_tag`) VALUES
+(3, 10, 1),
+(4, 10, 2),
+(5, 10, 3),
+(6, 7, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tags`
+--
+
+CREATE TABLE `tags` (
+  `id` int(11) NOT NULL,
+  `tag` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tags`
+--
+
+INSERT INTO `tags` (`id`, `tag`) VALUES
+(1, 'Música'),
+(2, 'Variedades'),
+(3, 'Otros');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -110,7 +178,8 @@ INSERT INTO `users` (`id`, `nombre`, `email`, `clave`, `rol`, `pregunta`, `respu
 (3, 'Jose Alejandro Arenas', 'admin@a.com', 'f748f42d9539b952a4b7a3b9c17f43ad791161dd3f5d56c01391ea69beaeb3e190ccb96061d392c9c23a57b1246b33b7b675bf325e831d4b7694546e37b1f9e4FzjebCv6UGRrayrbN5rppsRoe7ViTkgn5+cKfEnrFGg=', 'admin', 'pregunta', 'respuesta', NULL, '2019-07-01 20:51:08'),
 (6, 'pedro', 'q@q.q', '6d13432275622f7f03070da1a6222736d13e9e466b9377fd47140770316c6784ca68d312c0ce9dd784a788df8145f19ac7ef555ec42fbc69830f0656ec9e0248akdK0+6Ply92aDeVcS+HSXYm/MsSQXhMuPUQW9C11xw=', 'admin', 'preguntica', 'respuestica', 'avatars/avatar12.png', '2019-07-01 21:46:13'),
 (7, 'moderador', 'm@m.m', '8b532efd82c956c3331f5f86986c05e6929f2c998443a24752c27aac583ec77b59abe0eef608e0de1b03f7def0128e0bc73b11d872d9fa08e475bb0bae00ac0dTLvCDDD77sCdUFulbvtdun4+jFMIRmHn/kfmpGMVTdo=', 'mod', 'm', 'm', 'avatars/avatar11.png', '2019-07-01 22:44:22'),
-(8, 'nuevo', 'nuevo@nuevo.nuevo', '79a4f0835f7b6bba3b2ee9e6be1751d30615d28b57ac4393c82e94e787401bb8ac856d2f19d4e3635e598ed7c763182a9ab775a928821c42551443a14c806861tChIkfPR5TGeEgurtn34JvDxxnIrhH3yX97iXtgys9k=', 'admin', 'nuevo', 'nuevo', 'avatars/avatar12.png', '2019-07-01 22:59:47');
+(8, 'nuevo', 'nuevo@nuevo.nuevo', '79a4f0835f7b6bba3b2ee9e6be1751d30615d28b57ac4393c82e94e787401bb8ac856d2f19d4e3635e598ed7c763182a9ab775a928821c42551443a14c806861tChIkfPR5TGeEgurtn34JvDxxnIrhH3yX97iXtgys9k=', 'admin', 'nuevo', 'nuevo', 'avatars/avatar12.png', '2019-07-01 22:59:47'),
+(9, 'Belleza', NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-09 14:59:40');
 
 --
 -- Índices para tablas volcadas
@@ -120,6 +189,13 @@ INSERT INTO `users` (`id`, `nombre`, `email`, `clave`, `rol`, `pregunta`, `respu
 -- Indices de la tabla `blog`
 --
 ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_categoria` (`id_categoria`);
+
+--
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -132,6 +208,20 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `dedicatorias`
 --
 ALTER TABLE `dedicatorias`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `post_tags`
+--
+ALTER TABLE `post_tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_post` (`id_post`),
+  ADD KEY `id_tag` (`id_tag`);
+
+--
+-- Indices de la tabla `tags`
+--
+ALTER TABLE `tags`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -148,7 +238,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -163,10 +259,39 @@ ALTER TABLE `dedicatorias`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `post_tags`
+--
+ALTER TABLE `post_tags`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `blog`
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `post_tags`
+--
+ALTER TABLE `post_tags`
+  ADD CONSTRAINT `post_tags_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `blog` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `post_tags_ibfk_2` FOREIGN KEY (`id_tag`) REFERENCES `tags` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

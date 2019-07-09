@@ -23,11 +23,9 @@
         
         <!-- Main css -->
         <link href="<?=base_url('assets/css/main.css')?>" rel="stylesheet">
-		<style>
-            iframe{
-    overflow:hidden;
-}
-            </style>
+
+		
+        
         
     </head>
 	
@@ -44,7 +42,7 @@
             <nav class="navbar sticky-top navbar-expand-lg main-menu">
                 <div class="container">
 
-                    <a class="navbar-brand" href="<?=base_url()?>"><img src="<?=base_url('assets/images/partner-3.jpg')?>" class="d-inline-block align-top" alt=""></a>
+                    <a class="navbar-brand" href="<?=base_url()?>"><img src="<?=base_url('assets/images/GMO.jpg')?>" class="d-inline-block align-top img-responsive" alt=""></a>
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="menu-toggle"></span>

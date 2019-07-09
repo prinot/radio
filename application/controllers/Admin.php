@@ -9,6 +9,8 @@ class Admin extends CI_Controller {
 		$this->load->model('usuario');
 		$this->load->model('post');
 		$this->load->model('dedicatoria');	
+		$this->load->model('tag');	
+		$this->load->model('categoria');	
 
 		//parametros generales para la carga de archivos. en el caso de las portadas de los  post.
 		$this->upload_path = 'uploads/';
@@ -75,8 +77,9 @@ class Admin extends CI_Controller {
 	public function add_post(){	
 		if($this->session->userdata('logged_in')){	
 			$data['last']='posts';
+			$data2['tags']=$this->tag->getTags();
 			$this->load->view('admin/header',$data);
-			$this->load->view('admin/add_post');
+			$this->load->view('admin/add_post',$data2);
 			$this->load->view('admin/footer');
 		}
 		else{
@@ -120,6 +123,10 @@ class Admin extends CI_Controller {
 		if($this->session->userdata('logged_in')){
 			$data['last']='posts';
 			$data2['post']=$this->post->getPostById($id);
+			$data2['tags']=$this->tag->getTags();
+
+			//query a los tags que ya el post tiene asignados
+			$data2['post_tags']=$this->post->getTags($id);
 			$this->load->view('admin/header',$data);
 			$this->load->view('admin/edit_post',$data2);
 			$this->load->view('admin/footer');						
@@ -151,7 +158,6 @@ class Admin extends CI_Controller {
 			$contenido=$this->input->post('contenido');	
 
 			$data=array('titulo' =>$titulo, 'contenido' =>$contenido);
-
 			//parametros para la carga de la imagen
 			$config['upload_path']          = $this->upload_path;
 			$config['allowed_types']        = $this->allowed_types;
@@ -162,6 +168,7 @@ class Admin extends CI_Controller {
 
 			$this->load->library('upload', $config);
 
+			$tags=$this->input->post('tags');
 			if ( ! $this->upload->do_upload('portada'))
 			{
 			//error al subir el archivo	
@@ -173,6 +180,14 @@ class Admin extends CI_Controller {
 			}
 			
 			if($this->post->updatePost($data,$id)){
+				$this->post->updateTags($id);			
+				if(isset($tags)){
+					foreach ($tags as $tag){
+						$etiqueta=array('id_post'=>$id,'id_tag'=>$tag);
+						$this->post->addTag($etiqueta);
+					}
+				}	
+				
 				$this->session->set_flashdata('status','Post modificado exitosamente');
 				redirect('/admin/posts', 'refresh');
 			}
@@ -188,7 +203,7 @@ class Admin extends CI_Controller {
 			$titulo=$this->input->post('titulo');
 			$contenido=$this->input->post('contenido');		
 			$redactor=$this->session->userdata('id');
-
+			$tags=$this->input->post('tags');
 			$data=array('titulo' =>$titulo, 'contenido' =>$contenido, 'redactor' =>$redactor);
 			
 			//parametros para la carga de la imagen
@@ -198,7 +213,7 @@ class Admin extends CI_Controller {
 			$new_name = time().'_'.$_FILES["portada"]['name'];
             $config['file_name'] = $new_name;
 			$config['max_filename'] = $this->max_filename;	
-
+			
 			$this->load->library('upload', $config);
 			if ( ! $this->upload->do_upload('portada'))
 			{
@@ -209,8 +224,15 @@ class Admin extends CI_Controller {
 				$file =$this->upload->file_name;						
 				$data['portada']=$file;
 			}
-			
-			if($this->post->addPost($data)){
+			$id_post=$this->post->addPost($data);
+			if($id_post!==null){		
+				if(isset($tags)){
+					foreach ($tags as $tag){
+						$etiqueta=array('id_post'=>$id_post,'id_tag'=>$tag);
+						$this->post->addTag($etiqueta);
+					}
+				}		
+				
 				$this->session->set_flashdata('status','Post registrado exitosamente');
 				redirect('/admin/posts', 'refresh');
 			}
@@ -377,6 +399,119 @@ class Admin extends CI_Controller {
 			$this->session->set_userdata($newdata);			
 				redirect('/admin/index', 'refresh');
 			}
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+
+	public function categorias(){
+		if($this->session->userdata('logged_in')){
+			
+			$data['categorias']=$this->categoria->getCategorias();
+			$data['last']='categorias';
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/categorias');
+			$this->load->view('admin/footer');						
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+
+	}
+
+	public function add_category(){		
+		if($this->session->userdata('logged_in')){						
+			$data['last']='categorias';
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/add_category');
+			$this->load->view('admin/footer');						
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+
+	public function new_category()
+	{
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
+			$nombre=$this->input->post('nombre');			
+			$data=array('nombre' =>$nombre);		
+			
+			if($this->tag->addTag($data)){
+				$this->session->set_flashdata('status','Etiqueta registrada exitosamente');
+				redirect('/admin/categorias', 'refresh');
+			}
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+	public function delete_category($id){				
+		if($this->session->userdata('logged_in')){
+			$this->db->delete('categorias', array('id' => $id));
+			$this->session->set_flashdata('status', 'Categoría eliminada');
+			redirect('admin/categorias'); 
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+	public function tags(){
+		if($this->session->userdata('logged_in')){
+			
+			$data['tags']=$this->tag->getTags();
+			$data['last']='tags';
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/tags');
+			$this->load->view('admin/footer');						
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+
+	}
+
+	public function add_tag(){		
+		if($this->session->userdata('logged_in')){						
+			$data['last']='tags';
+			$this->load->view('admin/header',$data);
+			$this->load->view('admin/add_tag');
+			$this->load->view('admin/footer');						
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+
+	public function new_tag()
+	{
+		if($this->session->userdata('logged_in') && ($this->session->userdata('rol')=="admin")){	
+			$nombre=$this->input->post('nombre');			
+			$data=array('tag' =>$nombre);		
+			
+			if($this->tag->addTag($data)){
+				$this->session->set_flashdata('status','Etiqueta registrada exitosamente');
+				redirect('/admin/tags', 'refresh');
+			}
+		}
+		else{
+			$this->session->set_flashdata('status','Inicia sesión para continuar');
+			redirect('admin/login');
+		}			
+	}
+	public function delete_tag($id){				
+		if($this->session->userdata('logged_in')){
+			$this->db->delete('tags', array('id' => $id));
+			$this->session->set_flashdata('status', 'Etiqueta eliminada');
+			redirect('admin/tags'); 
 		}
 		else{
 			$this->session->set_flashdata('status','Inicia sesión para continuar');
