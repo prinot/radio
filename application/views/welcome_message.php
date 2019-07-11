@@ -12,7 +12,7 @@
                             <h2 style="font-size:6vw;">Bienvenidos a<br> Global Music Online</h2>
                             <p> Desde que entras en GMO se siente un espiritu alegre y familiar. Disfruta la mejor musica junto a tu familia online.
                             </p>
-                            <a href="<?=base_url('radio-programs')?>" class="bttn-mid btn-fill">Radio GMO</a>
+                            <a href="#" id="play" class="bttn-mid btn-fill">Radio GMO</a>
                         </div>
                     </div>
                 </div>
