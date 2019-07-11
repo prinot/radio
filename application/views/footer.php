@@ -82,7 +82,7 @@ Antes de continuar, por favor confirma que aceptas nuestros términos para escuc
                 var play=$('#divplay');
                 var pause=$('#divpause');
                 pause.hide();
-                play.hide();
+                
                 $( "#divplay" ).click(function() {
                     sound.play();
                     $('#divplay').hide();
@@ -153,15 +153,30 @@ Antes de continuar, por favor confirma que aceptas nuestros términos para escuc
                         // class name attached to cancel button 
                         cancel:'btn btn-danger'
                     }
-                };
+                };  
 
-                alertify.confirm(pre, function(){
-                    sound.play();
-                    play.hide();
-                    pause.show();
-                },function(){
-                    //alertify.error('Declined');
-                }).set({labels:{ok:'Acepto', cancel: 'No acepto'}, padding: false});                                
+                var cookie_check="";
+                    $.get("<?=base_url('cookies/get')?>", function(data, status){            
+                        if(data==="true")        
+                            console.log("cookie_set");
+                            else{
+                                alertify.confirm(pre, function(){
+                                    sound.play();
+                                    play.hide();
+                                    pause.show();                                            
+                                    var xmlhttp = new XMLHttpRequest();
+                                    xmlhttp.onreadystatechange = function() {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            console.log(this.responseText);
+                                        }   
+                                    };
+                                    xmlhttp.open("GET", "<?=base_url('cookies/set')?>", true);
+                                    xmlhttp.send();                    
+                                },function(){
+                                    //alertify.error('Declined');
+                                }).set({labels:{ok:'Acepto', cancel: 'No acepto'}, padding: false});                                                    
+                            }
+                    });                                                                    
             });   
         </script>
         
