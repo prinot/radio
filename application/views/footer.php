@@ -1,15 +1,15 @@
-
+        
         <!--Footer Area-->
         <footer class="footer-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                        <div class="footer-menu">                                                                        
-                        <div class=' col-md-6 spacial-widget-now-97928-93f0d7e38a797ca2f06f6a17d6f560785b5c446b'></div>
-                        <audio >
-                            <source src="https://samcloud.spacial.com/api/listen?sid=97928&m=sc&rid=173585">                        
-                                Your browser does not support the audio tag.
-                        </audio> 
+                        <div class="footer-menu">   
+                            <div class=" col-md-6">                                
+                                <a  class="float" id="divplay"><img  src="<?=base_url('assets/images/play.png');?>" width="50"></a>
+                                <a   class="float"  id="divpause"><img  src="<?=base_url('assets/images/pause.png');?>" width="50"></a>
+                            </div>
+                            <div class=' col-md-6 spacial-widget-now-97928-93f0d7e38a797ca2f06f6a17d6f560785b5c446b'></div>
                             <ul>
                                 <li><a href="<?=base_url()?>">Inicio</a></li>
                                 <li><a href="<?=base_url('about')?>">Acerca de</a></li>
@@ -32,7 +32,7 @@
             </div>
         </footer><!--/Footer Area-->
 
-        <div id="la">
+        <div id="la" style="display:none">
 
 Antes de continuar, por favor confirma que aceptas nuestros términos para escuchar nuestra estación de radio.  
 
@@ -54,8 +54,14 @@ Antes de continuar, por favor confirma que aceptas nuestros términos para escuc
         <script src="<?=base_url('assets/js/wow.min.js')?>"></script>
         <script src="<?=base_url('assets/js/script.js')?>"></script>
         <script src="<?=base_url('assets/js/toast.js')?>"></script>
+        <script type='text/javascript' src='//samcloudmedia.spacial.com/webwidgets/widget/v5/spacialwidget.js?lib=5&his=5&queue=5&hours=8&art=true&themeType=defined&theme=light&showBuyButton=never'></script>
+        
         <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.min.js"></script>
+
+        
+<script src="https://unpkg.com/wavesurfer.js"></script>
+
         
         <script type="text/javascript">
             <?php if($this->session->flashdata('status_cliente')!=''){
@@ -66,12 +72,28 @@ Antes de continuar, por favor confirma que aceptas nuestros términos para escuc
         </script>
 
         <script type="text/javascript">
+
             var sound = new Howl({
                 src: ['http://17003.live.streamtheworld.com/SP_R2568747_SC'],                
                 html5: true,                
             });
             
-            $( document ).ready(function() {                
+            $( document ).ready(function() { 
+                var play=$('#divplay');
+                var pause=$('#divpause');
+                pause.hide();
+                play.hide();
+                $( "#divplay" ).click(function() {
+                    sound.play();
+                    $('#divplay').hide();
+                    $('#divpause').show();                                        
+                });
+                $( "#divpause" ).click(function() {
+                    sound.pause();
+                    $('#divpause').hide();
+                    $('#divplay').show();                                        
+                });
+
                 var pre = document.createElement('pre');
                 pre.style.maxHeight = "400px";
                 pre.style.margin = "0";
@@ -79,70 +101,69 @@ Antes de continuar, por favor confirma que aceptas nuestros términos para escuc
                 pre.style.whiteSpace = "pre-wrap";
                 pre.style.textAlign = "justify";
                 pre.appendChild(document.createTextNode($('#la').text()));
-                
-
-
-   
-alertify.defaults = {
-        // dialogs defaults
+                   
+                alertify.defaults = {
+                // dialogs defaults
         
-        autoReset:true,
-        basic:false,
-        closable:true,
-        closableByDimmer:true,
-        frameless:false,
-        maintainFocus:true, // <== global default not per instance, applies to all dialogs
-        maximizable:true,
-        modal:true,
-        movable:true,
-        moveBounded:false,
-        overflow:true,
-        padding: true,
-        pinnable:true,
-        pinned:true,
-        preventBodyShift:false, // <== global default not per instance, applies to all dialogs
-        resizable:true,
-        startMaximized:false,
-        transition:'pulse',
+                    autoReset:true,
+                    basic:false,
+                    closable:true,
+                    closableByDimmer:true,
+                    frameless:false,
+                    maintainFocus:true, // <== global default not per instance, applies to all dialogs
+                    maximizable:true,
+                    modal:true,
+                    movable:true,
+                    moveBounded:false,
+                    overflow:true,
+                    padding: true,
+                    pinnable:true,
+                    pinned:true,
+                    preventBodyShift:false, // <== global default not per instance, applies to all dialogs
+                    resizable:true,
+                    startMaximized:false,
+                    transition:'pulse',
 
-        // notifier defaults
-        notifier:{
-            // auto-dismiss wait time (in seconds)  
-            delay:5,
-            // default position
-            position:'bottom-right',
-            // adds a close button to notifier messages
-            closeButton: false
-        },
+                    // notifier defaults
+                    notifier:{
+                        // auto-dismiss wait time (in seconds)  
+                        delay:5,
+                        // default position
+                        position:'bottom-right',
+                        // adds a close button to notifier messages
+                        closeButton: false
+                    },
 
-        // language resources 
-        glossary:{
-            // dialogs default title
-            title:'Términos',
-            // ok button text
-            ok: 'OK',
-            // cancel button text
-            cancel: 'Cancel'            
-        },
+                    // language resources 
+                    glossary:{
+                        // dialogs default title
+                        title:'Términos',
+                        // ok button text
+                        ok: 'OK',
+                        // cancel button text
+                        cancel: 'Cancel'            
+                    },
 
-        // theme settings
-        theme:{
-            // class name attached to prompt dialog input textbox.
-            input:'form-control',
-            // class name attached to ok button
-            ok:'btn btn-primary',
-            // class name attached to cancel button 
-            cancel:'btn btn-danger'
-        }
-    };
+                    // theme settings
+                    theme:{
+                        // class name attached to prompt dialog input textbox.
+                        input:'form-control',
+                        // class name attached to ok button
+                        ok:'btn btn-primary',
+                        // class name attached to cancel button 
+                        cancel:'btn btn-danger'
+                    }
+                };
 
                 alertify.confirm(pre, function(){
                     sound.play();
+                    play.hide();
+                    pause.show();
                 },function(){
                     //alertify.error('Declined');
                 }).set({labels:{ok:'Acepto', cancel: 'No acepto'}, padding: false});                                
             });   
         </script>
-        <script type='text/javascript' src='//samcloudmedia.spacial.com/webwidgets/widget/v5/spacialwidget.js?lib=5&his=5&queue=5&hours=8&art=true&themeType=defined&theme=light&showBuyButton=never'></script>                        
+        
     </body>
 </html>

@@ -61,6 +61,14 @@ font-family: 'Open Sans', sans-serif;
 ===============
 
  ***/
+
+ .float{
+	position:fixed;	
+	bottom:40px;
+	left:30px;		
+	text-align:center;
+	
+}
  
 * {
 	margin:0px;

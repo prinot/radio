@@ -24,6 +24,7 @@
         <!-- Main css -->
         <link href="<?=base_url('assets/css/main.css')?>" rel="stylesheet">
         <link href="<?=base_url('assets/css/toast.css')?>" rel="stylesheet">
+        <link href="<?=base_url('assets/css/styles.css')?>" rel="stylesheet">
 
         <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css"/>
 		
