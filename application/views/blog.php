@@ -37,8 +37,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 centered wow fadeInUp" data-wow-delay="0.3s">
                         <div class="section-title cl-black">
-                            <h2>All Blog Posts</h2>
-                            <p>Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton. contented him few extensive supported</p>
+                            <h2>Estamos más cerca de ti.</h2>
+                            <p>Encontraras albunes, artistas y la tendencia en musica romantica en nuestro Blog GMO</p>
                         </div>
                     </div>
                 </div>
