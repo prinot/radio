@@ -144,6 +144,56 @@
         </section><!--/Radio Jockey-->
 
   
+<!--Daily Program Schedule-->
+<section class="program-schedule section-padding dark-overlay" style="background: url('assets/images/program-bg.jpg') fixed;">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 centered wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="section-title cl-white">
+                            <h2>Lista de canciones</h2>
+                            <p>Cada semana tenemos la mejor programación, pensando en cada uno de los miembros de esta gran familia de GMO.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-lg-8 col-md-8 col-sm-12 offset-md-2 offset-lg-2 col-xs-12 wow fadeInRight" data-wow-delay="0.4s">
+                        <div class="tab-content program-schedule-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active table-responsive table-responsive-sm table-responsive-xs" id="v-pills-monday" role="tabpanel" aria-labelledby="v-pills-monday-tab">
+                            <table class="table table-borderless">
+                                  <thead>
+                                    <tr>
+                                        <th scope="col">Artista</th>
+                                        <th scope="col">Título</th>
+                                        <th scope="col">Duración</th>                                        
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                        <?php foreach ($this->sam->getSongs() as $song):?>
+                                            <tr>
+                                                <td><?=$song->artist?></td>
+                                                <td><?=$song->title?></td>
+                                                <?php 
+                                                $ss = round($song->duration / 1000);
+                                                $mm = (int) ($ss / 60);
+                                                $ss = ($ss % 60);
+                                                if ($ss < 10) {
+                                                    $ss = "0$ss";
+                                                }
+                                                $durDisplay = "$mm:$ss";
+                                                ?>
+                                                <td><?=$durDisplay?></td>                                      
+                                            </tr>                                    
+                                        <?php endforeach;?>                                     
+                                  </tbody>
+                                </table>
+                              </div>                                                                                                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/Daily Program Schedule-->
+
 
         <!--Photo Gallery Area-->
         <section class="portfolio-area section-padding">
